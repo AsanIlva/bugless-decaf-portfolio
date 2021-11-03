@@ -1,0 +1,542 @@
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pasan De Silva</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      .from-primary {
+        --tw-gradient-from: #1d99ac;
+        --tw-gradient-stops: var(--tw-gradient-from),
+          var(--tw-gradient-to, rgba(34, 211, 238, 0));
+      }
+
+      .to-secondary {
+        --tw-gradient-to: #00ffff;
+      }
+
+      .servicesImageHeight {
+        height: 220px;
+      }
+    </style>
+    <link rel="shortcut icon" href="LogoCompanyPasan.png"/>
+  </head>
+
+  <body class="antialised relative text-gray-600">
+        <div class="inverted absolute w-full min-h-screen">
+          <video
+            autoplay
+            muted
+            loop
+            class="relative dark:bg-black flex items-center justify-center h-screen mb-12 overflow-hidden"
+            src="https://cdn.videvo.net/videvo_files/video/free/2015-08/large_watermarked/Lightning_preview.mp4"
+          ></video>
+          <div
+            class="
+            dark:bg-black
+              border-solid
+              md:border-dotted
+              absolute
+              z-20
+              bottom-10
+              right-0
+              left-0
+              inline-flex
+              space-x-20
+              justify-center
+              font-bold
+              uppercase
+              tracking-wide
+              text-red-500
+            "
+          >
+            <a href="#services" class="text-cyan-600 mb-4">Services</a>
+            <a href="#work" class="text-cyan-600 mb-4">Work</a>
+            <a href="#contact" class="text-cyan-600 mb-4">Contact</a>
+          </div>
+        </div>
+        <div
+          class="
+            relative
+            z-10
+            flex
+            min-h-screen
+            h-auto
+            justify-center
+            items-center
+          "
+        >
+          <div class="relative max-w-4xl">
+            <div
+              class="
+                absolute
+                z-10
+                inset-0
+                bg-gradient-to-r
+                from-primary
+                to-secondary
+                shadow-lg
+                transform
+                -skew-y-6
+                sm:skew-y-0 sm:-rotate-6 sm:rounded-lg
+              "
+            ></div>
+            <div
+              class="inverted
+              dark:text-gray-200
+              dark:bg-gray-800
+                relative
+                z-20
+                bg-white
+                md:flex
+                justify-between
+                p-12
+                shadow-lg
+                rounded-lg
+                w-full
+                max-w-4xl
+              "
+            >
+              <div
+                class="sm:flex flex-col justify-between space-y-6 py-6 md:pr-10"
+              >
+                <div class="">
+                  <h2 class="text-lg">Hello I Am</h2>
+                  <h1 class="dark:text-gray-100 pt-1 text-5xl font-bold text-gray-800">
+                    Pasan De Silva
+                  </h1>
+                </div>
+                <p class="text-xl leading-relaxed">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Laudantium nulla sit ratione provident, possimus facere!
+                </p>
+              </div>
+              <img
+                src="august-default.jpg"
+                class="
+                  w-80
+                  rounded-full
+                  flex-shrink-0
+                  border-6 border-white
+                  shadow-md
+                "
+                alt="A picture of me"
+              />
+            </div>
+          </div>
+        </div>
+  <!-- dark mode toggle -->
+  <div class="dark:bg-black mt-2 flex justify-center items-center space-x-2">
+    <span class="text-sm text-gray-800">Light</span>
+    <div>
+<input type="checkbox" name="" id="toggle" class="hidden" />
+<label for="toggle" class="cursor-pointer">
+<div class="w-9 h-5 flex items-center bg-gray-300 rounded-full p-1">
+<div class="toggle-dot w-4 h-4 bg-white rounded-full shadow-md transform duration-300 ease-in-out"></div>
+</div>
+</label>
+</div>
+<span class="text-sm text-gray-400">Dark</span>
+</div>
+<div>
+  <!-- music player here -->
+</div>
+        <section id="services" class="bg-gray-50 dark:bg-black dark:text-gray-200 pt-20 pb-28 px-8">
+          <div class="inverted max-w-6xl mx-auto">
+            <div class="text-center">
+              <h1 class="inverted text-6xl dark:text-gray-100  text-gray-800">Services</h1>
+              <p class="inverted pt-2 text-xl">Heres What I Offer.</p>
+            </div>
+            <div
+              class="
+                mt-24
+                grid grid-cols-1
+                md:grid-cols-2
+                lg:grid-cols-3
+                gap-20
+              "
+            >
+              <div class="relative">
+                <div
+                  class="
+                    absolute
+                    z-10
+                    inset-0
+                    bg-gradient-to-r
+                    from-primary
+                    to-secondary
+                    shadow-lg
+                    transform
+                    -skew-y-6
+                    sm:skew-y-0 sm:-rotate-6 sm:rounded-lg
+                  "
+                ></div>
+                <div class="relative z-20 bg-white h-full rounded-md shadow-md">
+                  <img
+                    src="https://www.rouge-media.com/wp-content/uploads/2019/05/web-app-illustration-1.png"
+                    class="rounded-t-md servicesImageHeight"
+                    alt=""
+                  />
+                  <div class="px-10 pb-6 dark:text-gray-200 dark:bg-gray-500">
+                    <h2 class="pt-3 font-bold text-2xl text-gray-800 dark:text-gray-200 dark:bg-gray-500">
+                      Responsive Websites
+                    </h2>
+                    <p class="pt-3">
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                      Corrupti perferendis corporis culpa doloremque, amet ipsa!
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="relative">
+                <div
+                  class="
+                    absolute
+                    z-10
+                    inset-0
+                    bg-gradient-to-r
+                    from-primary
+                    to-secondary
+                    shadow-lg
+                    transform
+                    -skew-y-6
+                    sm:skew-y-0 sm:-rotate-6 sm:rounded-lg
+                  "
+                ></div>
+                <div class="relative z-20 bg-white h-full rounded-md shadow-md">
+                  <img
+                    src="https://wichitawebdev.com/lmg-cms/wp-content/uploads/2018/06/pwa-reliable.png"
+                    class="rounded-t-md bg-blue-200 servicesImageHeight"
+                    alt=""
+                  />
+                  <div class="px-10 pb-6 dark:text-gray-200 dark:bg-gray-500">
+                    <h2 class="pt-3 font-bold text-2xl text-gray-800 dark:text-gray-200 dark:bg-gray-500">
+                      Web Applications
+                    </h2>
+                    <p class="pt-3">
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                      Corrupti perferendis corporis culpa doloremque, amet ipsa!
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="relative">
+                <div
+                  class="
+                    absolute
+                    z-10
+                    inset-0
+                    bg-gradient-to-r
+                    from-primary
+                    to-secondary
+                    shadow-lg
+                    transform
+                    -skew-y-6
+                    sm:skew-y-0 sm:-rotate-6 sm:rounded-lg
+                  "
+                ></div>
+                <div class="relative z-20 bg-white h-full rounded-md shadow-md">
+                  <img
+                    src="https://buildfire.com/wp-content/uploads/2017/10/become-mobile-app-developer.jpg"
+                    class="rounded-t-md servicesImageHeight"
+                    alt=""
+                  />
+                  <div class="px-10 pb-6 dark:text-gray-200 dark:bg-gray-500">
+                    <h2 class="pt-3 font-bold text-2xl text-gray-800 dark:text-gray-200 dark:bg-gray-500">
+                      Mobile Applications
+                    </h2>
+                    <p class="pt-3">
+                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                      Corrupti perferendis corporis culpa doloremque, amet ipsa!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="work" class="py-20 dark:bg-gray-800 px-8">
+          <div class="max-w-6xl mx-auto dark:text-gray-200 dark:bg-gray-800">
+            <div class="inverted text-center">
+              <h1 class="text-6xl font-bold text-gray-700 dark:text-gray-50">Work</h1>
+              <p class="pt-2 text-xl">Here is my portfolio.</p>
+            </div>
+            <div
+              class="
+                grid
+                mt-16
+                grid-cols-1
+                md:grid-cols-2
+                lg:grid-cols-3
+                gap-14
+              "
+            >
+              <div class="bg-white dark:bg-gray-800 rounded-md shadow-md lg:col-span-2">
+                <img
+                  class="inverted object-cover w-full h-80 rounded-t-md"
+                  src="https://slickdeals.net/blog/wp-content/uploads/2020/03/20-hero-dell-remote-work-3.jpg"
+                  alt=""
+                />
+                <div class="p-8">
+                  <h3 class="text-2xl font-bold text-gray-800">Work Title</h3>
+                  <p class="pt-3">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Corporis obcaecati officia earum eum quaerat repellendus
+                    labore voluptates possimus, eaque magnam?
+                  </p>
+                  <a
+                    href=""
+                    class="
+                      inline-block
+                      mt-4
+                      px-6
+                      py-2
+                      bg-gradient-to-r
+                      from-primary
+                      to-secondary
+                      rounded-md
+                      shadow-md
+                      text-white
+                      font-bold
+                      text-sm
+                    "
+                    >View More</a
+                  >
+                </div>
+              </div>
+              <div class="bg-white dark:bg-gray-800 rounded-md shadow-md">
+                <img
+                  class="inverted object-cover w-full h-80 rounded-t-md"
+                  src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Paperless_work_desk_with_an_iPad%2C_iMac_and_a_MacBook.jpg"
+                  alt=""
+                />
+                <div class="p-8">
+                  <h3 class="text-2xl font-bold text-gray-800">Work Title</h3>
+                  <p class="pt-3">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Corporis obcaecati officia earum eum quaerat repellendus
+                    labore voluptates possimus, eaque magnam?
+                  </p>
+                  <a
+                    href=""
+                    class="
+                      inline-block
+                      mt-4
+                      px-6
+                      py-2
+                      bg-gradient-to-r
+                      from-primary
+                      to-secondary
+                      rounded-md
+                      shadow-md
+                      text-white
+                      font-bold
+                      text-sm
+                    "
+                    >View More</a
+                  >
+                </div>
+              </div>
+              <div class="bg-white dark:bg-gray-800 rounded-md shadow-md">
+                <img
+                  class="inverted object-cover w-full h-80 rounded-t-md"
+                  src="https://api.time.com/wp-content/uploads/2021/02/laptop-home-office.jpg"
+                  alt=""
+                />
+                <div class="p-8">
+                  <h3 class="text-2xl font-bold text-gray-800">Work Title</h3>
+                  <p class="pt-3">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Corporis obcaecati officia earum eum quaerat repellendus
+                    labore voluptates possimus, eaque magnam?
+                  </p>
+                  <a
+                    href=""
+                    class="
+                      inline-block
+                      mt-4
+                      px-6
+                      py-2
+                      bg-gradient-to-r
+                      from-primary
+                      to-secondary
+                      rounded-md
+                      shadow-md
+                      text-white
+                      font-bold
+                      text-sm
+                    "
+                    >View More</a
+                  >
+                </div>
+              </div>
+              <div class="bg-white dark:bg-gray-800 rounded-md shadow-md lg:col-span-2">
+                <img
+                  class="inverted object-cover w-full h-80 rounded-t-md"
+                  src="https://hbr.org/resources/images/article_assets/2014/10/Mar20_05_1187745190.jpg"
+                  alt=""
+                />
+                <div class="p-8">
+                  <h3 class="text-2xl font-bold text-gray-800">Work Title</h3>
+                  <p class="pt-3">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Corporis obcaecati officia earum eum quaerat repellendus
+                    labore voluptates possimus, eaque magnam?
+                  </p>
+                  <a
+                    href=""
+                    class="
+                      inline-block
+                      mt-4
+                      px-6
+                      py-2
+                      bg-gradient-to-r
+                      from-primary
+                      to-secondary
+                      rounded-md
+                      shadow-md
+                      text-white
+                      font-bold
+                      text-sm
+                    "
+                    >View More</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="contact" class="dark:bg-black pt-20 pb-36 px-8 bg-gray-50">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center">
+              <h1 class="text-6xl dark:text-gray-100 font-bold text-gray-700">Contact</h1>
+              <p class="pt-2 dark:text-gray-200 text-xl">Get in touch with me.</p>
+            </div>
+          </div>
+          <div class="mt-16 relative max-w-4xl mx-auto">
+            <div
+              class="
+                absolute
+                z-10
+                inset-0
+                bg-gradient-to-r
+                from-primary
+                to-secondary
+                shadow-lg
+                transform
+                -skew-y-6
+                sm:shew-y-0 sm:-rotate-6 sm:rounded-lg
+              "
+            ></div>
+            <div class="relative z-20 bg-white dark:bg-gray-300 dark:text-green-600 rounded-md shadow-md p-12">
+              <form action="">
+                <div class="inverted grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    class="
+                      border border-gray-200
+                      outline-none
+                      px-4
+                      py-2
+                      rounded-md
+                      hover:border-gray-400
+                      focus:border-gray-600
+                    "
+                  />
+                  <input
+                    type="email"
+                    placeholder="E-mail"
+                    class="
+                      border border-gray-200
+                      outline-none
+                      px-4
+                      py-2
+                      rounded-md
+                      hover:border-gray-400
+                      focus:border-gray-600
+                    "
+                  />
+                  <input
+                    type="text"
+                    placeholder="Subject"
+                    class="
+                      border border-gray-200
+                      outline-none
+                      px-4
+                      py-2
+                      rounded-md
+                      hover:border-gray-400
+                      focus:border-gray-600
+                      md:col-span-2
+                    "
+                  />
+                  <textarea
+                    class="
+                      border border-gray-200
+                      outline-none
+                      px-4
+                      py-2
+                      rounded-md
+                      hover:border-gray-400
+                      focus:border-gray-600
+                      md:col-span-2
+                    "
+                    rows="5"
+                    placeholder="message"
+                  ></textarea>
+                </div>
+                <button
+                  class="
+                  inverted
+                    inline-block
+                    w-auto
+                    mt-4
+                    px-6
+                    py-2
+                    bg-gradient-to-r
+                    from-primary
+                    to-secondary
+                    rounded-md
+                    shadow-md
+                    text-white
+                    font-bold
+                    text-sm
+                  "
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </body>
+      <!-- jQuery used to autoscroll the page to #contacts within 10 seconds after loading-->
+      <script>
+        // TODO add this later
+        // $("html, body").delay(10000).animate({ scrollTop: 5000 }, 2000);
+      </script>
+    </html>
+    <!-- Vanilla JavaScript used to toggle dark mode -->
+    <script>
+      const checkbox = document.querySelector("#toggle");
+      const html = document.querySelector("html");
+
+      const toggleDarkMode = function () {
+        checkbox.checked
+        // Ternary operation - if (?) checked, else (:)
+        ? html.classList.add("dark")
+        : html.classList.remove("dark");
+      }
+
+      toggleDarkMode();
+      checkbox.addEventListener("click", toggleDarkMode);
+    </script>
+  </body>
+</html>
+
