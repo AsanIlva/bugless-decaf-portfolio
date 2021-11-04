@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tailwindcss build ./src/styles.css -o ./public/styles.css",
-    "prod": "NODE_ENV=production tailwindcss build ./src/styles.css -o ./public/styles.css"
+    "build": "tailwindcss build ./src/styles.css -o ./docs/styles.css",
+    "prod": "NODE_ENV=production tailwindcss build ./src/styles.css -o ./docs/styles.css"
   },
   "keywords": [],
   "author": "",
