@@ -9,6 +9,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="content.css">
     <style>
       .from-primary {
         --tw-gradient-from: #1d99ac;
@@ -30,35 +31,12 @@
   <body class="antialised relative text-gray-600">
         <div class="dark:bg-black inverted absolute w-full min-h-screen">
           <video
-          loop
+            loop
             autoplay
             muted
             class="relative dark:bg-black flex items-center justify-center h-screen mb-12 overflow-hidden" id="vid"
             src="https://cdn.videvo.net/videvo_files/video/free/2015-08/large_watermarked/Lightning_preview.mp4"
           ></video>
-          <div
-            class="
-            dark:bg-black
-              border-solid
-              md:border-dotted
-              absolute
-              z-20
-              bottom-10
-              right-0
-              left-0
-              inline-flex
-              space-x-20
-              justify-center
-              font-bold
-              uppercase
-              tracking-wide
-              text-red-500
-            "
-          >
-            <a href="#services" class="text-cyan-600 mb-4">Services</a>
-            <a href="#work" class="text-cyan-600 mb-4">Work</a>
-            <a href="#contact" class="text-cyan-600 mb-4">Contact</a>
-          </div>
         </div>
         <div
           class="
@@ -130,10 +108,28 @@
             </div>
           </div>
         </div>
+        <!-- navbar -->
+        <nav class="nav">
+          <div class="container">
+            <h1><a href="#" class="logo">Turnaleft</a></h1>
+            <ul>
+              <li><a class="current" href="#services">Services</a></li>
+              <li><a href="#work">Portfolio</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+<div class="dark:bg-black bg-red-900">
+  <h1 class="animate-spin text-center text-4xl">&#128192</h1>
+</div>
+<!-- music player here -->
+<div class="relative">
+  <iframe class=" dark:bg-black" src="https://open.spotify.com/embed/playlist/6EGJ0tqISSEno5cxeB1zv7" width="100%" height="180" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+</div>
   <!-- dark mode toggle -->
-  <div class="dark:bg-black bg-red-900 pt-2 pb-2 flex justify-center items-center space-x-2">
-    <span class="text-sm text-gray-300">Light</span>
-    <div>
+<div class="dark:bg-black bg-red-900 pb-2 pt-2  flex justify-center items-center space-x-2">
+  <span class="text-sm text-gray-300">Light</span>
+  <div>
 <input type="checkbox" name="" id="toggle" class="hidden" />
 <label for="toggle" class="cursor-pointer">
 <div class="w-9 h-5 flex items-center bg-gray-300 rounded-full p-1">
@@ -143,13 +139,7 @@
 </div>
 <span class="text-sm text-gray-100">Dark</span>
 </div>
-<div class="dark:bg-black bg-red-900">
-  <h1 class="animate-spin text-center text-4xl">&#128192</h1>
-</div>
-<div class="relative">
-  <!-- music player here -->
-  <iframe class=" dark:bg-black" src="https://open.spotify.com/embed/playlist/6EGJ0tqISSEno5cxeB1zv7" width="100%" height="180" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-</div>
+  <!-- dark mode toggle end ☝️-->
         <section id="services" class="bg-gray-50 dark:bg-black dark:text-gray-200 pt-20 pb-28 px-8">
           <div class="inverted max-w-6xl mx-auto">
             <div class="text-center">
@@ -523,7 +513,7 @@
       <!-- jQuery used to autoscroll the page to #contacts within 10 seconds after loading-->
       <script>
         // TODO add this if needed
-        //  $("html, body").delay(10000).animate({ scrollTop: 5000 }, 2000);
+        $("html, body").delay(3000).animate({ scrollTop: 889}, 2000);
       </script>
     </html>
     <!-- just in case the browser doesn't allow html5 to loop the video -->
@@ -549,6 +539,18 @@
 
       toggleDarkMode();
       checkbox.addEventListener("click", toggleDarkMode);
+    </script>
+    <script>
+      const nav = document.querySelector('.nav')
+      window.addEventListener('scroll', fixNav)
+
+      function fixNav() {
+       if(window.scrollY > nav.offsetHeight + 300 ) {
+       nav.classList.add('now')
+      } else {
+        nav.classList.remove('now')
+      }
+      }
     </script>
   </body>
 </html>
