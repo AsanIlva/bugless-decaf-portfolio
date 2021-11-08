@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Headland+One&display=swap");
 
 video {
@@ -64,4 +65,159 @@ nav ul {
 .nav a:hover {
   color: #4d4dff;
   font-weight: bold;
+}
+
+.box {
+  transform: translateX(400%);
+  transition: transform 0.4s ease;
+}
+.box:nth-of-type(even) {
+  transform: transform(-400%);
+}
+.box .show {
+  transform: translateX(0);
+}
+
+/* skill section */
+
+.skill-all {
+  font-family: "poppins";
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.skills {
+  width: 550px;
+  padding: 1rem;
+  background-color: #05e8ba;
+  background-image: linear-gradient(315deg, #05e8ba 0%, #087ee1 74%);
+  border-radius: 10px;
+  position: relative;
+}
+
+.skills__description {
+  width: 600px;
+}
+.skill {
+  position: relative;
+  margin: 1rem 0;
+  border-radius: 10px;
+  display: flex;
+  column-gap: 1.5rem;
+  align-items: center;
+  padding: 1rem 0.5rem;
+  background: rgb(255, 255, 255);
+  cursor: pointer;
+}
+.active__skill {
+  outline: 2px solid #ff0000;
+}
+.skill__icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+.skill p {
+  font-size: 0.9rem;
+}
+
+.section__title {
+  font-size: 2rem;
+  color: #051536;
+  margin-bottom: 1rem;
+}
+.section__title span {
+  color: #cf6d16;
+}
+.description {
+  display: none;
+}
+.active__description {
+  display: block;
+}
+.description p {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+.description__btn {
+  width: 120px;
+  height: 50px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  background: #e96814;
+  color: #fff;
+  cursor: pointer;
+}
+
+.description__btn:hover {
+  background: #b9642b;
+}
+
+@media screen and (max-width: 1200px) {
+  .skills {
+    width: 400px;
+  }
+  .skills__description {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  section {
+    display: block;
+    margin-top: 1rem;
+  }
+
+  .skills {
+    margin: 1rem auto;
+    display: flex;
+    width: 95%;
+    justify-content: space-around;
+  }
+  .about__skill p {
+    display: none;
+  }
+
+  .skill {
+    width: 200px;
+  }
+  .skills__description {
+    width: 95%;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .skill {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+  .skill__icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .section__title {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .skill {
+    justify-content: center;
+  }
+  .skill__title {
+    display: none;
+  }
 }
