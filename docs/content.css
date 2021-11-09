@@ -13,6 +13,7 @@ video {
   top: 0;
   left: 0;
   right: 0;
+  z-index: 100;
   transition: all 0.3s ease-in-out;
 }
 
@@ -210,6 +211,14 @@ nav ul {
 
   .section__title {
     font-size: 1.5rem;
+  }
+}
+@media (max-width: 978px) {
+  .h-auto {
+    padding-top: 2rem;
+  }
+  .nav a {
+    /* find a solution for this issue */
   }
 }
 

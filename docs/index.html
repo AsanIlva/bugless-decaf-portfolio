@@ -30,12 +30,12 @@
   </head>
 
   <body class="antialised relative text-gray-600">
-        <div class="dark:bg-black inverted absolute w-full min-h-screen">
+        <div class="inverted absolute w-full min-h-screen">
           <video
             loop
             autoplay
             muted
-            class="relative dark:bg-black flex items-center justify-center h-screen mb-12 overflow-hidden" id="vid"
+            class="relative flex items-center justify-center h-screen mb-12 overflow-hidden" id="vid"
             src="https://cdn.videvo.net/videvo_files/video/free/2015-08/large_watermarked/Lightning_preview.mp4"
           ></video>
         </div>
@@ -120,25 +120,31 @@
             </ul>
         </nav>
 
+ <!-- music player here -->
 <div class="bg-red-900">
   <h1 class="animate-spin text-center text-4xl">&#128192</h1>
 </div>
-<!-- music player here -->
 <div class="relative">
   <iframe src="https://open.spotify.com/embed/playlist/6EGJ0tqISSEno5cxeB1zv7" width="100%" height="180" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 </div>
   <!-- dark mode toggle -->
-<div class="dark:bg-black bg-red-900 pb-2 pt-2  flex justify-center items-center space-x-2">
-  <span class="text-sm text-gray-300">Light</span>
-  <div>
-<input type="checkbox" name="" id="toggle" class="hidden" />
-<label for="toggle" class="cursor-pointer">
-<div class="w-9 h-5 flex items-center bg-gray-300 rounded-full p-1">
-<div class="toggle-dot w-4 h-4 bg-white rounded-full shadow-md transform duration-300 ease-in-out"></div>
-</div>
+  <style>
+    .toggle-checkbox:checked {
+        right: 0;
+        border: none;
+        background-color: rgb(129 124 214);
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' className='h-10 w-10' fill='%23FFF' viewBox='0 0 24 24' stroke='rgb(129 124 214)' > <path strokeLinecap='round' strokeLinejoin='round' d='M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z' /> </svg>");
+    }
+    .toggle-checkbox:checked + .toggle-label {
+        background-color: rgb(76 73 188);
+    }   
+</style>
+<div class="dark:bg-black pt-3 pb-3 flex items-center justify-center">
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input type="checkbox" name="toggle" id="toggle" class=" bg-yellow-300 border-yellow-500 mr-1 focus:ring-transparent toggle-checkbox absolute block w-6 h-6 rounded-full border-2 appearance-none cursor-pointer" />
+<label for="toggle" class="toggle-label block h-8 -ml-1 -mt-1 rounded-full bg-green-400 cursor-pointer">
 </label>
 </div>
-<span class="text-sm text-gray-100">Dark</span>
 </div>
   <!-- dark mode toggle end ☝️-->
 
