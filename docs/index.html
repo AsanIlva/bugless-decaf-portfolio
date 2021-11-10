@@ -32,10 +32,8 @@
   <body class="antialised relative text-gray-600">
         <div class="inverted absolute w-full min-h-screen">
           <video
-            loop
-            autoplay
-            muted
-            class="relative flex items-center justify-center h-screen mb-12 overflow-hidden" id="vid"
+          loop autoplay preload="true"
+            class="relative flex items-center justify-center h-screen mb-12 overflow-hidden" id="vid" type="video/mp4"
             src="https://cdn.videvo.net/videvo_files/video/free/2015-08/large_watermarked/Lightning_preview.mp4"
           ></video>
         </div>
@@ -119,6 +117,8 @@
               <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
+      
+        
 
  <!-- music player here -->
 <div class="bg-red-900">
@@ -585,14 +585,15 @@
                     text-white
                     font-bold
                     text-sm
-                  "
-                >
-                  Send Message
-                </button>
-              </form>
+                    "
+                    >
+                    Send Message
+                  </button>
+                </form>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+          <!-- addon html - popup -->
       </body>
       <!-- jQuery used to autoscroll the page to #contacts within 10 seconds after loading-->
       <script>
@@ -601,16 +602,17 @@
       </script>
     </html>
     <!-- just in case the browser doesn't allow html5 to loop the video -->
- 
-    <!-- addon html - popup -->
-    <script> 
-    $(function(){
-      $("#includedContent").load("./more/skills.html"); 
+ <script>
+ var vid = document.getElementById("vid");
+    vid.addEventListener("timeupdate", function () {
+        if(this.currentTime >= 5.0) {
+            this.currentTime = 0.0;
+        }
     });
+
     </script> 
     <script src="more/dark.js"></script>
     <script src="more/nav.js"></script>
-    <script src="more/video.js"></script>
     <script src="more/skills.js"></script>
   </body>
 </html>
