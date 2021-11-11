@@ -23,7 +23,7 @@ You can click the Preview link to take a look at your changes.
 I'm Pasan, and I'm a **Developer** & **UI/UX Designer** from Adelaide 🇦🇺
 
 - 👨🏽‍💻 &nbsp;&nbsp; Currently designing my **portfolio**
-- 🎓 &nbsp; Full Stack Bootcamp in Adelaide University **@HETIC**
+- 🎓 &nbsp; Full Stack Bootcamp in Adelaide University
 - 🤖 &nbsp; Currently learning **JavaScript**
 - 📚 &nbsp; I'm currently going through [_Node js with Test Driven Development
   _](https://www.udemy.com/course/test-driven-development-with-nodejs/)
@@ -66,12 +66,12 @@ Other     12 mins         █░░░░░░░░░░░░░░░░░
 <!-- <a href="#" alt="clang"><img height="35" src="https://svgshare.com/i/Ntk.svg"></a>&nbsp;&nbsp; -->
 <!-- <a href="#" alt="vue"><img height="33" src="https://svgshare.com/i/Rmd.svg"></a>&nbsp;&nbsp; -->
 
-<a href="#" alt="javascript"><img height="33" src="https://github.com/blackcater/blackcater/blob/main/images/logo-javascript.svg"></a>&nbsp;&nbsp;&nbsp;
-<a href="#" alt="nodejs"><img height="37" src="https://github.com/blackcater/blackcater/blob/main/images/logo-nodejs.svg"></a>&nbsp;&nbsp;&nbsp;
-<a href="#" alt="typescript"><img height="33" src="https://github.com/blackcater/blackcater/blob/main/images/logo-typescript.svg"></a>&nbsp;&nbsp;&nbsp;
-<a href="#" alt="expressjs"><img height="34" src="https://www.vectorlogo.zone/logos/expressjs/expressjs-icon.svg"></a>&nbsp;&nbsp;&nbsp;
-<a href="#" alt="python"><img height="36" src="https://svgshare.com/i/VhQ.svg"></a>&nbsp;&nbsp;
-<a href="#" alt="react"><img height="34" src="https://svgshare.com/i/RjK.svg"></a>&nbsp;&nbsp;
-<a href="#" alt="figma"><img height="34" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/800px-Figma-logo.svg.png"></a>&nbsp;&nbsp;
-<a href="#" alt="graphql"><img height="35" src="https://svgshare.com/i/VBo.svg"></a>&nbsp;&nbsp;&nbsp;
-<a href="#" alt="firebase"><img height="35" src="https://cdn.freebiesupply.com/logos/large/2x/firebase-1-logo-png-transparent.png"></a>&nbsp;&nbsp;
+<a href="#" alt="javascript"><img height="33" src="https://github.com/blackcater/blackcater/blob/main/images/logo-javascript.svg">JavaScript</a>&nbsp;&nbsp;&nbsp;
+<a href="#" alt="nodejs"><img height="37" src="https://github.com/blackcater/blackcater/blob/main/images/logo-nodejs.svg">nodeJs</a>&nbsp;&nbsp;&nbsp;
+<a href="#" alt="typescript"><img height="33" src="https://github.com/blackcater/blackcater/blob/main/images/logo-typescript.svg">TypeScript</a>&nbsp;&nbsp;&nbsp;
+expressJs<a href="#" alt="expressjs"><img height="34" src="https://www.vectorlogo.zone/logos/expressjs/expressjs-icon.svg"></a>&nbsp;&nbsp;&nbsp;
+Python<a href="#" alt="python"><img height="36" src="https://svgshare.com/i/VhQ.svg"></a>&nbsp;&nbsp;
+reactJs<a href="#" alt="react"><img height="34" src="https://svgshare.com/i/RjK.svg"></a>&nbsp;&nbsp;
+Figma<a href="#" alt="figma"><img height="34" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/800px-Figma-logo.svg.png"></a>&nbsp;&nbsp;
+graphQl<a href="#" alt="graphql"><img height="35" src="https://svgshare.com/i/VBo.svg"></a>&nbsp;&nbsp;&nbsp;
+Firebase<a href="#" alt="firebase"><img height="35" src="https://cdn.freebiesupply.com/logos/large/2x/firebase-1-logo-png-transparent.png"></a>&nbsp;&nbsp;
