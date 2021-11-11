@@ -10,6 +10,7 @@
     />
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="content.css">
+    <link rel="stylesheet" href="more/skills-popup.css">
     <script src="https://kit.fontawesome.com/9db33f93ed.js" crossorigin="anonymous"></script>
     <style>
       .from-primary {
@@ -32,7 +33,7 @@
   <body class="antialised relative text-gray-600">
         <div class="inverted absolute w-full min-h-screen">
           <video
-          loop autoplay preload="true"
+          loop autoplay preload muted
             class="relative flex items-center justify-center h-screen mb-12 overflow-hidden" id="vid" type="video/mp4"
             src="https://cdn.videvo.net/videvo_files/video/free/2015-08/large_watermarked/Lightning_preview.mp4"
           ></video>
@@ -112,7 +113,7 @@
           <div class="container">
             <h1><a href="#" class="logo">Turnaleft</a></h1>
             <ul>
-              <li><a class="current" href="#services">Services</a></li>
+              <li><a href="#services" class="active">Services</a></li>
               <li><a href="#work">Portfolio</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
@@ -332,6 +333,25 @@
               </div>
           </div>
       </section>
+      <button class="w-full sm:w-auto px-9 py-4 mb-4 text-base font-semibold focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-gray-900 focus:outline-none transition-colors duration-200 rounded-full block  bg-transparent hover:bg-cyan-300 border border-purple-700 text-purple-700 hover:text-purple-200 " data-modal-target="#modal">Find out what my Skills are</button>
+    <div class="modal" id="modal">
+      <div class="modal-header">
+        <div class="title">Example Modal</div>
+        <button data-close-button class="close-button">&times;</button>
+      </div>
+      <div class="modal-body">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse quod alias
+        ut illo doloremque eum ipsum obcaecati distinctio debitis reiciendis
+        quae quia soluta totam doloribus quos nesciunt necessitatibus,
+        consectetur quisquam accusamus ex, dolorum, dicta vel? Nostrum
+        voluptatem totam, molestiae rem at ad autem dolor ex aperiam. Amet
+        assumenda eos architecto, dolor placeat deserunt voluptatibus tenetur
+        sint officiis perferendis atque! Voluptatem maxime eius eum dolorem
+        dolor exercitationem quis iusto totam! Repudiandae nobis nesciunt sequi
+        iure! Eligendi, eius libero. Ex, repellat sapiente!
+      </div>
+    </div>
+    <div id="overlay"></div>
     </div>
 
         <div id="includedContent"></div>
@@ -614,6 +634,7 @@
     <script src="more/dark.js"></script>
     <script src="more/nav.js"></script>
     <script src="more/skills.js"></script>
+    <script src="more/skills-popup.js"></script>
   </body>
 </html>
 
