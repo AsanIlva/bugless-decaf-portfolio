@@ -69,7 +69,7 @@ Other     12 mins         █░░░░░░░░░░░░░░░░░
 <a href="#" alt="javascript"><img height="33" src="https://github.com/blackcater/blackcater/blob/main/images/logo-javascript.svg">JavaScript</a>&nbsp;&nbsp;&nbsp;
 <a href="#" alt="nodejs"><img height="37" src="https://github.com/blackcater/blackcater/blob/main/images/logo-nodejs.svg">nodeJs</a>&nbsp;&nbsp;&nbsp;
 <a href="#" alt="typescript"><img height="33" src="https://github.com/blackcater/blackcater/blob/main/images/logo-typescript.svg">TypeScript</a>&nbsp;&nbsp;&nbsp;
-expressJs<a href="#" alt="expressjs"><img height="34" src="https://www.vectorlogo.zone/logos/expressjs/expressjs-icon.svg"></a>&nbsp;&nbsp;&nbsp;
+<a href="#" alt="expressjs"><img height="34" src="https://www.vectorlogo.zone/logos/expressjs/expressjs-icon.svg">expressJs</a>&nbsp;&nbsp;&nbsp;
 <a href="#" alt="python"><img height="36" src="https://svgshare.com/i/VhQ.svg">Python</a>&nbsp;&nbsp;
 <a href="#" alt="react"><img height="34" src="https://svgshare.com/i/RjK.svg">reactJs</a>&nbsp;&nbsp;
 <a href="#" alt="figma"><img height="34" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/800px-Figma-logo.svg.png">Figma</a>&nbsp;&nbsp;
