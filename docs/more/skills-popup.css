@@ -1,18 +1,21 @@
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
+@import url("https://fonts.googleapis.com/css2?family=Kanit:ital,wght@1,300&display=swap");
+
+.modal-div {
+  ::after,
+  ::before {
+    box-sizing: border-box;
+  }
 }
 
 .modal {
   position: fixed;
+  z-index: 100;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
   transition: 200ms ease-in-out;
   border: 1px solid black;
   border-radius: 10px;
-  z-index: 10;
   background-color: white;
   width: 500px;
   max-width: 80%;
@@ -46,6 +49,10 @@
 
 .modal-body {
   padding: 10px 15px;
+}
+
+.popupBtn {
+  font-family: "Kanit", sans-serif;
 }
 
 #overlay {
