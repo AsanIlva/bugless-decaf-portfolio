@@ -30,7 +30,7 @@
     <link rel="shortcut icon" href="LogoCompanyPasan.png"/>
   </head>
 
-  <body class="antialised relative text-gray-600">
+  <body class="antialised relative text-blue-grey-900">
         <div class="inverted absolute w-full min-h-screen">
           <video
           loop autoplay preload muted
@@ -66,8 +66,8 @@
             ></div>
             <div
               class="inverted
-              dark:text-gray-200
-              dark:bg-gray-800
+              dark:text-grey-200
+              dark:bg-blue-grey-600
                 relative
                 z-20
                 bg-white
@@ -150,11 +150,11 @@
   <!-- dark mode toggle end ☝️-->
 
         <!-- services section -->
-        <section id="services" class="bg-gray-100 dark:bg-black dark:text-gray-200 pt-20 pb-28 px-8">
+        <section id="services" class="bg-gray-100 dark:bg-black pt-20 pb-28 px-8">
           <div class="inverted max-w-6xl mx-auto">
             <div class="text-center">
-              <h1 class="inverted text-6xl dark:text-gray-100  text-gray-800">Services</h1>
-              <p class="inverted pt-2 text-xl">Heres What I Offer.</p>
+              <h1 class="inverted text-6xl dark:text-green-100 text-gray-800">Services</h1>
+              <p class="inverted pt-2 text-xl dark:text-green-300">Heres What I Offer.</p>
             </div>
             <div
               class="
@@ -180,17 +180,17 @@
                     sm:skew-y-0 sm:-rotate-6 sm:rounded-lg
                   "
                 ></div>
-                <div class="relative z-20 bg-white h-full rounded-md shadow-md dark:bg-gray-500">
+                <div class="relative z-20 bg-white h-full rounded-md shadow-md dark:bg-blue-grey-600">
                   <img
                     src="https://www.rouge-media.com/wp-content/uploads/2019/05/web-app-illustration-1.png"
                     class="rounded-t-md servicesImageHeight"
                     alt=""
                   />
-                  <div class="px-10 pb-6 dark:text-gray-200">
-                    <h2 class="pt-3 font-bold text-2xl text-gray-800 dark:text-gray-100">
+                  <div class="px-10 pb-6">
+                    <h2 class="pt-3 font-bold text-2xl text-gray-800 dark:text-cyan-100">
                       Responsive Websites running on web browsers
                     </h2>
-                    <p class="pt-3">
+                    <p class="pt-3 dark:text-blue-grey-50">
                       Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                       Corrupti perferendis corporis culpa doloremque, amet ipsa!
                     </p>
@@ -212,17 +212,17 @@
                     sm:skew-y-0 sm:-rotate-6 sm:rounded-lg
                   "
                 ></div>
-                <div class="relative z-20 bg-white dark:bg-gray-500 h-full rounded-md shadow-md">
+                <div class="relative z-20 bg-white dark:bg-blue-grey-600 h-full rounded-md shadow-md">
                   <img
                     src="https://wichitawebdev.com/lmg-cms/wp-content/uploads/2018/06/pwa-reliable.png"
                     class="rounded-t-md bg-blue-200 servicesImageHeight"
                     alt=""
                   />
-                  <div class="px-10 pb-6 dark:text-gray-200">
-                    <h2 class="pt-3 font-bold text-2xl text-gray-800 dark:text-gray-100">
+                  <div class="px-10 pb-6">
+                    <h2 class="pt-3 font-bold text-2xl text-gray-800 dark:text-cyan-100">
                       Web and Progressive Web Applications
                     </h2>
-                    <p class="pt-3">
+                    <p class="pt-3 dark:text-blue-grey-50">
                       Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                       Corrupti perferendis corporis culpa doloremque, amet ipsa!
                     </p>
@@ -244,17 +244,17 @@
                     sm:skew-y-0 sm:-rotate-6 sm:rounded-lg
                   "
                 ></div>
-                <div class="dark:bg-gray-500 relative z-20 bg-white h-full rounded-md shadow-md">
+                <div class="dark:bg-blue-grey-600 relative z-20 bg-white h-full rounded-md shadow-md">
                   <img
-                    src="https://buildfire.com/wp-content/uploads/2017/10/become-mobile-app-developer.jpg"
+                    src="https://cdn.pixabay.com/photo/2016/09/08/17/46/user-interface-1655006_1280.png"
                     class="rounded-t-md servicesImageHeight"
                     alt=""
                   />
-                  <div class="px-10 pb-6 dark:text-gray-200">
-                    <h2 class="pt-3 font-bold text-2xl text-gray-800 dark:text-gray-100">
+                  <div class="px-10 pb-6">
+                    <h2 class="pt-3 font-bold text-2xl text-gray-800 dark:text-cyan-100">
                       Mobile Applications running natively on <i class="fab fa-google"></i> Android and  ios
                     </h2>
-                    <p class="pt-3">
+                    <p class="pt-3 dark:text-blue-grey-50">
                       Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                       Corrupti perferendis corporis culpa doloremque, amet ipsa!
                     </p>
@@ -265,11 +265,26 @@
           </div>
         </section>
 
+        <!-- popup modal -->
+        <div class="dark:bg-blue-grey-800">
+          <div class="pt-20">
+                <button type="button" class="popupBtn flex max-w-sm w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 focus:outline-none text-white text-lg uppercase font-bold shadow-md rounded-full mx-auto p-5" data-modal-target="#modal">
+                    <div class="flex sm:flex-cols-12 gap-2">
+                        <div class="col-span-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z" />
+                            </svg>
+                        </div>
+                        <div class="col-span-2 pt-2">🖱️ Find out what my Skills are</div>
+                    </div>    
+                </button>
+            </div>
+
         <!-- skills section -->
-        <div class="dark:bg-gray-800">
+        <div>
         <section class="skill-all">
-          <div class="skills">
-              <div class="skill active__skill">
+          <div class="skills dark:text-indigo-900">
+              <div class="skill active__skill dark:bg-amber">
                   <div class="skill__icon">
                       <img src="web-development.png" alt="" class="skill__icon">
                   </div>
@@ -279,7 +294,7 @@
                           necessitatibus numquam nemo !</p>
                   </div>
               </div>
-              <div class="skill">
+              <div class="skill dark:bg-amber">
                   <div class="skill__icon">
                       <img src="ux-interface.png" alt="" class="skill__icon">
                   </div>
@@ -289,7 +304,7 @@
                           necessitatibus numquam nemo !</p>
                   </div>
               </div>
-              <div class="skill">
+              <div class="skill dark:bg-amber">
                   <div class="skill__icon">
                       <img src="front-end.png" alt="" class="skill__icon">
                   </div>
@@ -300,10 +315,30 @@
                   </div>
               </div>
           </div>
+          <div class="items-center modal-div">
+        <div class="modal" id="modal">
+          <div class="modal-header">
+            <div class="title">Example Modal</div>
+            <button data-close-button class="close-button">&times;</button>
+          </div>
+          <div class="modal-body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse quod alias
+            ut illo doloremque eum ipsum obcaecati distinctio debitis reiciendis
+            quae quia soluta totam doloribus quos nesciunt necessitatibus,
+            consectetur quisquam accusamus ex, dolorum, dicta vel? Nostrum
+            voluptatem totam, molestiae rem at ad autem dolor ex aperiam. Amet
+            assumenda eos architecto, dolor placeat deserunt voluptatibus tenetur
+            sint officiis perferendis atque! Voluptatem maxime eius eum dolorem
+            dolor exercitationem quis iusto totam! Repudiandae nobis nesciunt sequi
+            iure! Eligendi, eius libero. Ex, repellat sapiente!
+          </div>
+        </div>
+        <div id="overlay"></div>
+      </div>
           <div class="skills__description">
               <div class="description active__description">
-                  <h2 class="dark:text-gray-200 section__title">Stay with Experienced<br><span>Developer</span></h2>
-                  <p class="text-gray-600 dark:text-gray-100">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis eligendi soluta ut recusandae
+                  <h2 class="section__title dark:text-lime-50">Stay with Experienced<br><span>Developer</span></h2>
+                  <p class="text-gray-600 dark:text-blue-100">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis eligendi soluta ut recusandae
                       provident tempore hic odio iusto reprehenderit non, temporibus molestiae alias voluptate, facilis
                       explicabo velit pariatur? Repellendus obcaecati dignissimos, maxime fuga consectetur id neque
                       explicabo provident commodi, similique quidem in sunt quo quibusdam? Totam ipsa rerum,
@@ -312,8 +347,8 @@
                   <button class="description__btn">Hire Me</button>
               </div>
               <div class="description">
-                  <h2 class="section__title dark:text-gray-200">Improve User Interface<br><span>with Us</span></h2>
-                  <p class="text-gray-600 dark:text-gray-100">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis eligendi soluta ut recusandae
+                  <h2 class="section__title dark:text-lime-50">Improve User Interface<br><span>with Us</span></h2>
+                  <p class="text-gray-600 dark:text-blue-100">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis eligendi soluta ut recusandae
                       provident tempore hic odio iusto reprehenderit non, temporibus molestiae alias voluptate, facilis
                       explicabo velit pariatur? Repellendus obcaecati dignissimos, maxime fuga consectetur id neque
                       explicabo provident commodi, similique quidem in sunt quo quibusdam? Totam ipsa rerum,
@@ -322,8 +357,8 @@
                   <button class="description__btn">See my work</button>
               </div>
               <div class="description">
-                  <h2 class="section__title dark:text-gray-200">I'm Professional <br><span>Designer</span></h2>
-                  <p class="text-gray-600 dark:text-gray-100">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis eligendi soluta ut recusandae
+                  <h2 class="section__title dark:text-lime-50">I'm Professional <br><span>Designer</span></h2>
+                  <p class="text-gray-600 dark:text-blue-100">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis eligendi soluta ut recusandae
                       provident tempore hic odio iusto reprehenderit non, temporibus molestiae alias voluptate, facilis
                       explicabo velit pariatur? Repellendus obcaecati dignissimos, maxime fuga consectetur id neque
                       explicabo provident commodi, similique quidem in sunt quo quibusdam? Totam ipsa rerum,
@@ -333,36 +368,18 @@
               </div>
           </div>
       </section>
-      <button class="w-full sm:w-auto px-9 py-4 mb-4 text-base font-semibold focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-gray-900 focus:outline-none transition-colors duration-200 rounded-full block  bg-transparent hover:bg-cyan-300 border border-purple-700 text-purple-700 hover:text-purple-200 " data-modal-target="#modal">Find out what my Skills are</button>
-    <div class="modal" id="modal">
-      <div class="modal-header">
-        <div class="title">Example Modal</div>
-        <button data-close-button class="close-button">&times;</button>
-      </div>
-      <div class="modal-body">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse quod alias
-        ut illo doloremque eum ipsum obcaecati distinctio debitis reiciendis
-        quae quia soluta totam doloribus quos nesciunt necessitatibus,
-        consectetur quisquam accusamus ex, dolorum, dicta vel? Nostrum
-        voluptatem totam, molestiae rem at ad autem dolor ex aperiam. Amet
-        assumenda eos architecto, dolor placeat deserunt voluptatibus tenetur
-        sint officiis perferendis atque! Voluptatem maxime eius eum dolorem
-        dolor exercitationem quis iusto totam! Repudiandae nobis nesciunt sequi
-        iure! Eligendi, eius libero. Ex, repellat sapiente!
-      </div>
     </div>
-    <div id="overlay"></div>
-    </div>
+  </div>
 
         <div id="includedContent"></div>
         
         <!-- work section -->
 
-        <section id="work" class="py-20 bg-gray-200 shadow-md dark:bg-gray-800 px-8">
-          <div class="max-w-6xl mx-auto dark:text-gray-200 dark:bg-gray-800">
+        <section id="work" class="py-20 bg-gray-200 shadow-md dark:bg-blue-grey px-8">
+          <div class="max-w-6xl mx-auto">
             <div class="inverted text-center">
-              <h1 class="text-6xl font-bold text-gray-700 dark:text-gray-50">Work</h1>
-              <p class="pt-2 text-xl">Here is my portfolio.</p>
+              <h1 class="text-6xl font-bold text-gray-700 dark:text-green-700-accent">Work</h1>
+              <p class="pt-2 text-xl dark:text-green-200-accent">Here is my portfolio.</p>
             </div>
             <div
               class="
@@ -374,14 +391,14 @@
                 gap-14
               "
             >
-              <div class="bg-white dark:bg-gray-800 rounded-md shadow-md lg:col-span-2">
+              <div class="bg-white dark:bg-teal-700-accent rounded-md shadow-md lg:col-span-2">
                 <img
                   class="inverted object-cover w-full h-80 rounded-t-md"
                   src="https://slickdeals.net/blog/wp-content/uploads/2020/03/20-hero-dell-remote-work-3.jpg"
                   alt=""
                 />
                 <div class="p-8">
-                  <h3 class="text-2xl font-bold text-blue-400">Work Title</h3>
+                  <h3 class="text-2xl font-bold text-cyan dark:text-deep-purple-50">Work Title</h3>
                   <p class="pt-3">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Corporis obcaecati officia earum eum quaerat repellendus
@@ -407,14 +424,14 @@
                   >
                 </div>
               </div>
-              <div class="bg-white dark:bg-gray-800 rounded-md shadow-md">
+              <div class="bg-white dark:bg-teal-700-accent rounded-md shadow-md">
                 <img
                   class="inverted object-cover w-full h-80 rounded-t-md"
                   src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Paperless_work_desk_with_an_iPad%2C_iMac_and_a_MacBook.jpg"
                   alt=""
                 />
                 <div class="p-8">
-                  <h3 class="text-2xl font-bold text-blue-400">Work Title</h3>
+                  <h3 class="text-2xl font-bold text-cyan dark:text-deep-purple-50">Work Title</h3>
                   <p class="pt-3">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Corporis obcaecati officia earum eum quaerat repellendus
@@ -440,14 +457,14 @@
                   >
                 </div>
               </div>
-              <div class="bg-white dark:bg-gray-800 rounded-md shadow-md">
+              <div class="bg-white dark:bg-teal-700-accent rounded-md shadow-md">
                 <img
                   class="inverted object-cover w-full h-80 rounded-t-md"
                   src="https://api.time.com/wp-content/uploads/2021/02/laptop-home-office.jpg"
                   alt=""
                 />
                 <div class="p-8">
-                  <h3 class="text-2xl font-bold text-blue-400">Work Title</h3>
+                  <h3 class="text-2xl font-bold text-cyan dark:text-deep-purple-50">Work Title</h3>
                   <p class="pt-3">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Corporis obcaecati officia earum eum quaerat repellendus
@@ -473,14 +490,14 @@
                   >
                 </div>
               </div>
-              <div class="bg-white dark:bg-gray-800 rounded-md shadow-md lg:col-span-2">
+              <div class="bg-white dark:bg-teal-700-accent rounded-md shadow-md lg:col-span-2">
                 <img
                   class="inverted object-cover w-full h-80 rounded-t-md"
                   src="https://hbr.org/resources/images/article_assets/2014/10/Mar20_05_1187745190.jpg"
                   alt=""
                 />
                 <div class="p-8">
-                  <h3 class="text-2xl font-bold text-blue-400">Work Title</h3>
+                  <h3 class="text-2xl font-bold text-cyan dark:text-deep-purple-50">Work Title</h3>
                   <p class="pt-3">
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Corporis obcaecati officia earum eum quaerat repellendus
@@ -512,8 +529,8 @@
         <section id="contact" class="dark:bg-black pt-20 pb-36 px-8 bg-gray-50">
           <div class="max-w-6xl mx-auto">
             <div class="text-center">
-              <h1 class="text-6xl dark:text-gray-100 font-bold text-gray-700">Contact</h1>
-              <p class="pt-2 dark:text-gray-200 text-xl">Get in touch with me.</p>
+              <h1 class="text-6xl dark:text-green-100 font-bold text-gray-700">Contact</h1>
+              <p class="pt-2 dark:text-green-300 text-xl">Get in touch with me.</p>
             </div>
           </div>
           <div class="mt-16 relative max-w-4xl mx-auto">
