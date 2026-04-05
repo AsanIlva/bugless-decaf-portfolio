@@ -4,654 +4,825 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pasan De Silva</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link
-      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: '#087ee1',
+              secondary: '#05e8ba',
+              maroon: '#800000',
+            }
+          }
+        }
+      }
+    </script>
+
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="content.css">
     <link rel="stylesheet" href="more/skills-popup.css">
-    <script src="https://kit.fontawesome.com/9db33f93ed.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
       .from-primary {
         --tw-gradient-from: #087ee1;
-        --tw-gradient-stops: var(--tw-gradient-from),
-          var(--tw-gradient-to, rgba(34, 211, 238, 0));
+        --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(34, 211, 238, 0));
       }
-
       .to-secondary {
         --tw-gradient-to: #05e8ba;
       }
-
       .servicesImageHeight {
         height: 220px;
       }
+      
+      /* --- CUSTOM ANIMATIONS --- */
+      @keyframes bounce-x {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX(5px); }
+      }
+      .animate-bounce-x { animation: bounce-x 1s infinite; }
+
+      /* --- NAVBAR TEXT & COLORS (UNSCROLLED) --- */
+      .nav .logo {
+          color: #800000 !important; /* Turnaleft is Maroon always */
+      }
+      
+      /* Light Mode Unscrolled Links (Dark Gray for contrast on #949494) */
+      .nav ul li a {
+          color: #1f2937 !important; 
+          font-size: 1.25rem !important; 
+          font-family: ui-sans-serif, system-ui, sans-serif !important; 
+          transition: color 0.3s ease;
+      }
+      
+      /* Dark Mode Unscrolled Links (Almost whitish gray for contrast on dark background) */
+      .dark .nav ul li a {
+          color: #f3f4f6 !important; 
+      }
+      
+      .nav ul li a:hover,
+      .nav ul li a.active {
+          color: #087ee1 !important; /* Blue on hover */
+      }
+
+      /* --- NAVBAR SCROLLED STATE OVERRIDES --- */
+      /* Links turn #666160 when scrolled in BOTH Light and Dark modes */
+      .nav.now ul li a,
+      .dark .nav.now ul li a {
+          color: #666160 !important; 
+      }
+      
+      .nav.now ul li a:hover,
+      .nav.now ul li a.active,
+      .dark .nav.now ul li a:hover,
+      .dark .nav.now ul li a.active {
+          color: #4d4dff !important; /* Hover state when scrolled */
+      }
+      
+      .nav.now span.text-white {
+          color: #1f2937 !important; /* "Click here to turn" turns dark slate gray on cyan background */
+          text-shadow: none; /* Removes the white glow for cleaner dark text */
+      }
+      .nav.now span#theme-word {
+          color: #800000 !important; /* 'light!/dark!' turns maroon on cyan background */
+      }
+
+      /* --- CIRCULAR LOGO OVER VIDEO --- */
+      .video-logo {
+          background-color: rgba(0, 0, 0, 0.3); /* Slight dark overlay to make maroon pop */
+          backdrop-filter: blur(8px); /* Premium glassmorphism blur effect */
+          -webkit-backdrop-filter: blur(8px);
+      }
+
+      /* --- SKILLS SECTION CLEANUP (Point 3) --- */
+      /* Purged conflicting rgba colors, relying 100% on Tailwind */
+      .description { display: none; animation: fadeIn 0.5s ease; }
+      .active__description { display: block; }
+      @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+      @media (min-width: 1024px) {
+        .skills-layout-fix { display: flex; flex-direction: row; gap: 3rem; }
+        .skills-left { width: 42%; }
+        .skills-right { width: 58%; }
+      }
+      @media (max-width: 1023px) {
+        .skills-layout-fix { display: flex; flex-direction: column; gap: 2rem; }
+        .skills-left, .skills-right { width: 100%; }
+      }
+
+      /* --- DEFAULT STATE: DARK MODE (MOON) --- */
+      .toggle-checkbox {
+          right: 1.5rem; 
+          background-color: rgb(129 124 214);
+          background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='h-10 w-10' fill='%23FFF' viewBox='0 0 24 24' stroke='rgb(129 124 214)' > <path stroke-linecap='round' stroke-linejoin='round' d='M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z' /> </svg>");
+          transition: all 0.3s ease;
+      }
+      .toggle-label {
+          background-color: rgb(76 73 188);
+          transition: background-color 0.3s ease;
+      }
+
+      /* --- CHECKED STATE: LIGHT MODE (SUN) --- */
+      .toggle-checkbox:checked {
+          right: 0; 
+          border: none;
+          background-color: #f1c40f;
+          background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' class='h-10 w-10' fill='%23FFF' viewBox='0 0 24 24' stroke='%23f1c40f' stroke-width='2'> <path stroke-linecap='round' stroke-linejoin='round' d='M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z' /> </svg>");
+      }
+      .toggle-checkbox:checked + .toggle-label {
+          background-color: #87ceeb;
+      }   
+
     </style>
     <link rel="shortcut icon" href="LogoCompanyPasan.png"/>
   </head>
 
-  <body class="antialised relative text-blue-grey-900">
-        <div class="inverted absolute w-full min-h-screen">
-          <video
-          loop autoplay preload muted
-            class="relative flex items-center justify-center h-screen mb-12 overflow-hidden" id="vid" type="video/mp4"
-            src="https://cdn.videvo.net/videvo_files/video/free/2015-08/large_watermarked/Lightning_preview.mp4"
-          ></video>
+  <body class="antialiased relative bg-gray-50 dark:bg-[#181a1b] text-gray-900 dark:text-[#e8e6e3] transition-colors duration-300">
+        
+        <div class="absolute w-full min-h-screen z-0">
+          <div class="absolute inset-0 bg-black/30 dark:bg-black/50 z-10 pointer-events-none"></div>
+          <video loop autoplay preload muted playsinline class="relative z-0 flex items-center justify-center h-screen mb-12 overflow-hidden object-cover w-full transition-opacity duration-500" id="vid" type="video/mp4" src="./tech-bg.mp4"></video>
+
+          <div class="absolute top-[76%] lg:top-[78%] left-1/2 transform -translate-x-1/2 z-20 pointer-events-none transition-all duration-300 opacity-85 shadow-2xl w-48 h-48 rounded-full border-4 border-maroon overflow-hidden">
+             <img src="LogoCompanyPasan.png" alt="Turnaleft Logo" class="w-full h-full object-cover transform scale-[1.45]" />
+          </div>
         </div>
-        <div
-          class="
-            relative
-            z-10
-            flex
-            min-h-screen
-            h-auto
-            justify-center
-            items-center
-          "
-        >
-          <div class="relative max-w-4xl">
-            <div
-              class="
-                absolute
-                z-10
-                inset-0
-                bg-gradient-to-r
-                from-primary
-                to-secondary
-                shadow-lg
-                transform
-                -skew-y-6
-                sm:skew-y-0 sm:-rotate-6 sm:rounded-lg
-              "
-            ></div>
-            <div
-              class="inverted
-              dark:text-grey-200
-              dark:bg-blue-grey-600
-                relative
-                z-20
-                bg-white
-                md:flex
-                justify-between
-                p-12
-                shadow-lg
-                rounded-lg
-                w-full
-                max-w-4xl
-              "
-            >
-              <div
-                class="sm:flex flex-col justify-between space-y-6 py-6 md:pr-10"
-              >
+        
+        <div class="relative z-10 flex min-h-screen h-auto justify-center items-center pt-24">
+          <div class="relative max-w-4xl w-full px-8">
+            <div class="absolute z-10 inset-0 bg-gradient-to-r from-primary to-secondary shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-lg mt-8 ml-8 w-[calc(100%-4rem)] h-[calc(100%-4rem)] sm:mt-0 sm:ml-0 sm:w-full sm:h-full"></div>
+            <div class="bg-gray-100 dark:bg-[#1e2022] relative z-20 md:flex justify-between p-12 shadow-lg rounded-lg w-full border border-transparent dark:border-[#303436]">
+              <div class="sm:flex flex-col justify-between space-y-6 py-6 md:pr-10">
                 <div class="">
-                  <h2 class="text-lg">Hello I Am</h2>
-                  <h1 class="dark:text-gray-100 pt-1 text-5xl font-bold text-gray-800">
-                    Pasan De Silva
-                  </h1>
+                  <h2 class="text-lg text-gray-500 dark:text-gray-400">Hello I Am</h2>
+                  <h1 class="text-gray-900 dark:text-white pt-1 text-5xl font-bold">Pasan De Silva</h1>
                 </div>
-                <p class="text-xl leading-relaxed">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Laudantium nulla sit ratione provident, possimus facere!
+                <p class="text-xl leading-relaxed text-gray-700 dark:text-gray-300">
+                  I am an IT professional specializing in enterprise system architecture, data forensics, and cloud infrastructure. I build robust digital solutions designed to translate complex business requirements into secure, highly functional technical outcomes.
                 </p>
               </div>
-              <img
-                src="august-default.jpg"
-                class="
-                  w-80
-                  rounded-full
-                  flex-shrink-0
-                  border-6 border-white
-                  shadow-md
-                "
-                alt="A picture of me"
-              />
+              <img src="august-default.jpg" class="w-80 rounded-full flex-shrink-0 border-6 border-white dark:border-[#242729] shadow-md object-cover" alt="A picture of me" />
             </div>
           </div>
         </div>
-        <!-- navbar -->
-        <nav class="nav">
-          <div class="container">
-            <h1><a href="#" class="logo">Turnaleft</a></h1>
-            <ul>
-              <li><a href="#services" class="active">Services</a></li>
-              <li><a href="#work">Portfolio</a></li>
-              <li><a href="#contact">Contact</a></li>
-            </ul>
+
+        <nav class="nav w-full z-50 fixed top-0 bg-[#949494] dark:bg-[#181a1b]">
+          <div class="flex justify-between items-center w-full px-6 lg:px-12 py-5 pr-2">
+            
+              <div class="flex-1 flex justify-start z-10">
+                <h1 style="margin: 0;"><a href="#" class="logo text-2xl font-bold" style="margin-left: 0;">Turnaleft</a></h1>
+              </div>
+              
+              <div class="flex-shrink-0 hidden lg:flex justify-center z-10">
+                <ul class="flex items-center space-x-6 lg:space-x-12 font-semibold transition-colors ml-11">
+                  <li><a href="#skills">Skills</a></li>
+                  <li><a href="#academic">Academic</a></li> 
+                  <li><a href="#work">Portfolio</a></li>
+                  <li><a href="#services">Capabilities</a></li>
+                  <li><a href="#contact">Contact</a></li>
+                </ul>
+              </div>
+                
+              <div class="flex-1 flex justify-end items-center gap-4 z-10 pr-2">
+                  <div class="hidden lg:flex items-center justify-end gap-2">
+                    <span style="font-family: 'Lobster', cursive;" class="text-white text-xs tracking-wide drop-shadow-md text-right leading-tight">
+                      Click here to turn<br>
+                      <span id="theme-word" class="text-sm transition-colors font-bold text-yellow-300">light!</span>
+                    </span>
+                    <i class="fa-solid fa-arrow-right text-white animate-bounce-x text-sm mt-2 drop-shadow-md"></i>
+                  </div>
+                  <div class="relative inline-block w-12 align-middle select-none transition duration-200 ease-in">
+                    <input type="checkbox" name="toggle" id="toggle" class="focus:ring-transparent toggle-checkbox absolute block w-6 h-6 rounded-full border-2 appearance-none cursor-pointer z-10" />
+                    <label for="toggle" class="toggle-label block h-8 -ml-1 -mt-1 rounded-full cursor-pointer"></label>
+                  </div>
+              </div>
+
+            </div>
         </nav>
       
-        
-
- <!-- music player here -->
-<div class="bg-red-900">
-  <h1 class="animate-spin text-center text-4xl">&#128192</h1>
-</div>
-<div class="relative">
-  <iframe src="https://open.spotify.com/embed/playlist/6EGJ0tqISSEno5cxeB1zv7" width="100%" height="180" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-</div>
-  <!-- dark mode toggle -->
-  <style>
-    .toggle-checkbox:checked {
-        right: 0;
-        border: none;
-        background-color: rgb(129 124 214);
-        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' className='h-10 w-10' fill='%23FFF' viewBox='0 0 24 24' stroke='rgb(129 124 214)' > <path strokeLinecap='round' strokeLinejoin='round' d='M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z' /> </svg>");
-    }
-    .toggle-checkbox:checked + .toggle-label {
-        background-color: rgb(76 73 188);
-    }   
-</style>
-<div class="dark:bg-black pt-3 pb-3 flex items-center justify-center">
-<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
-<input type="checkbox" name="toggle" id="toggle" class=" bg-yellow-300 border-yellow-500 mr-1 focus:ring-transparent toggle-checkbox absolute block w-6 h-6 rounded-full border-2 appearance-none cursor-pointer" />
-<label for="toggle" class="toggle-label block h-8 -ml-1 -mt-1 rounded-full bg-green-400 cursor-pointer">
-</label>
-</div>
-</div>
-  <!-- dark mode toggle end ☝️-->
-
-        <!-- services section -->
-        <section id="services" class="bg-gray-100 dark:bg-black pt-20 pb-28 px-8">
-          <div class="inverted max-w-6xl mx-auto">
-            <div class="text-center">
-              <h1 class="inverted text-6xl dark:text-green-100 text-gray-800">Services</h1>
-              <p class="inverted pt-2 text-xl dark:text-green-300">Heres What I Offer.</p>
-            </div>
-            <div
-              class="
-                mt-24
-                grid grid-cols-1
-                md:grid-cols-2
-                lg:grid-cols-3
-                gap-20
-              "
-            >
-              <div class="relative">
-                <div
-                  class="
-                    absolute
-                    z-10
-                    inset-0
-                    bg-gradient-to-r
-                    from-primary
-                    to-secondary
-                    shadow-lg
-                    transform
-                    -skew-y-6
-                    sm:skew-y-0 sm:-rotate-6 sm:rounded-lg
-                  "
-                ></div>
-                <div class="relative z-20 bg-white h-full rounded-md shadow-md dark:bg-blue-grey-600">
-                  <img
-                    src="https://www.rouge-media.com/wp-content/uploads/2019/05/web-app-illustration-1.png"
-                    class="rounded-t-md servicesImageHeight"
-                    alt=""
-                  />
-                  <div class="px-10 pb-6">
-                    <h2 class="pt-3 font-bold text-2xl text-gray-800 dark:text-cyan-100">
-                      Responsive Websites running on web browsers
-                    </h2>
-                    <p class="pt-3 dark:text-blue-grey-50">
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Corrupti perferendis corporis culpa doloremque, amet ipsa!
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="relative">
-                <div
-                  class="
-                    absolute
-                    z-10
-                    inset-0
-                    bg-gradient-to-r
-                    from-primary
-                    to-secondary
-                    shadow-lg
-                    transform
-                    -skew-y-6
-                    sm:skew-y-0 sm:-rotate-6 sm:rounded-lg
-                  "
-                ></div>
-                <div class="relative z-20 bg-white dark:bg-blue-grey-600 h-full rounded-md shadow-md">
-                  <img
-                    src="https://wichitawebdev.com/lmg-cms/wp-content/uploads/2018/06/pwa-reliable.png"
-                    class="rounded-t-md bg-blue-200 servicesImageHeight"
-                    alt=""
-                  />
-                  <div class="px-10 pb-6">
-                    <h2 class="pt-3 font-bold text-2xl text-gray-800 dark:text-cyan-100">
-                      Web and Progressive Web Applications
-                    </h2>
-                    <p class="pt-3 dark:text-blue-grey-50">
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Corrupti perferendis corporis culpa doloremque, amet ipsa!
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="relative">
-                <div
-                  class="
-                    absolute
-                    z-10
-                    inset-0
-                    bg-gradient-to-r
-                    from-primary
-                    to-secondary
-                    shadow-lg
-                    transform
-                    -skew-y-6
-                    sm:skew-y-0 sm:-rotate-6 sm:rounded-lg
-                  "
-                ></div>
-                <div class="dark:bg-blue-grey-600 relative z-20 bg-white h-full rounded-md shadow-md">
-                  <img
-                    src="https://cdn.pixabay.com/photo/2016/09/08/17/46/user-interface-1655006_1280.png"
-                    class="rounded-t-md servicesImageHeight"
-                    alt=""
-                  />
-                  <div class="px-10 pb-6">
-                    <h2 class="pt-3 font-bold text-2xl text-gray-800 dark:text-cyan-100">
-                      Mobile Applications running natively on <i class="fab fa-google"></i> Android and  ios
-                    </h2>
-                    <p class="pt-3 dark:text-blue-grey-50">
-                      Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Corrupti perferendis corporis culpa doloremque, amet ipsa!
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div class="absolute left-0 w-full z-40 opacity-90 transition-opacity hover:opacity-100" style="top: 76px;">
+          <div class="bg-red-900 py-1">
+            <h1 class="animate-spin text-center text-2xl">📀</h1>
           </div>
-        </section>
-
-        <!-- popup modal -->
-        <div class="dark:bg-blue-grey-800">
-          <div class="pt-20">
-                <button type="button" class="popupBtn flex max-w-sm w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 focus:outline-none text-white text-lg uppercase font-bold shadow-md rounded-full mx-auto p-5" data-modal-target="#modal">
-                    <div class="flex sm:flex-cols-12 gap-2">
-                        <div class="col-span-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13l-3 3m0 0l-3-3m3 3V8m0 13a9 9 0 110-18 9 9 0 010 18z" />
-                            </svg>
-                        </div>
-                        <div class="col-span-2 pt-2">🖱️ Find out what my Skills are</div>
-                    </div>    
-                </button>
-            </div>
-
-        <!-- skills section -->
-        <div>
-        <section class="skill-all">
-          <div class="skills dark:text-indigo-900">
-              <div class="skill active__skill dark:bg-amber">
-                  <div class="skill__icon">
-                      <img src="web-development.png" alt="" class="skill__icon">
-                  </div>
-                  <div class="about__skill">
-                      <h3 class="skill__title">Developer</h3>
-                      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut alias eligendi molestias
-                          necessitatibus numquam nemo !</p>
-                  </div>
-              </div>
-              <div class="skill dark:bg-amber">
-                  <div class="skill__icon">
-                      <img src="ux-interface.png" alt="" class="skill__icon">
-                  </div>
-                  <div class="about__skill">
-                      <h3 class="skill__title">Ui/Ux</h3>
-                      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut alias eligendi molestias
-                          necessitatibus numquam nemo !</p>
-                  </div>
-              </div>
-              <div class="skill dark:bg-amber">
-                  <div class="skill__icon">
-                      <img src="front-end.png" alt="" class="skill__icon">
-                  </div>
-                  <div class="about__skill">
-                      <h3 class="skill__title">Frontend</h3>
-                      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut alias eligendi molestias
-                          necessitatibus numquam nemo !</p>
-                  </div>
-              </div>
-          </div>
-          <div class="items-center modal-div">
-        <div class="modal" id="modal">
-          <div class="modal-header">
-            <div class="title">Example Modal</div>
-            <button data-close-button class="close-button">&times;</button>
-          </div>
-          <div class="modal-body">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse quod alias
-            ut illo doloremque eum ipsum obcaecati distinctio debitis reiciendis
-            quae quia soluta totam doloribus quos nesciunt necessitatibus,
-            consectetur quisquam accusamus ex, dolorum, dicta vel? Nostrum
-            voluptatem totam, molestiae rem at ad autem dolor ex aperiam. Amet
-            assumenda eos architecto, dolor placeat deserunt voluptatibus tenetur
-            sint officiis perferendis atque! Voluptatem maxime eius eum dolorem
-            dolor exercitationem quis iusto totam! Repudiandae nobis nesciunt sequi
-            iure! Eligendi, eius libero. Ex, repellat sapiente!
+          <div class="relative w-full">
+            <iframe src="https://open.spotify.com/embed/playlist/6EGJ0tqISSEno5cxeB1zv7" width="100%" height="180" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           </div>
         </div>
-        <div id="overlay"></div>
-      </div>
-          <div class="skills__description">
-              <div class="description active__description">
-                  <h2 class="section__title dark:text-lime-50">Stay with Experienced<br><span>Developer</span></h2>
-                  <p class="text-gray-600 dark:text-blue-100">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis eligendi soluta ut recusandae
-                      provident tempore hic odio iusto reprehenderit non, temporibus molestiae alias voluptate, facilis
-                      explicabo velit pariatur? Repellendus obcaecati dignissimos, maxime fuga consectetur id neque
-                      explicabo provident commodi, similique quidem in sunt quo quibusdam? Totam ipsa rerum,
-                      necessitatibus ipsum commodi, cum voluptates, veritatis incidunt odit explicabo sapiente. Quibusdam
-                      provident fugiat nulla, optio natus veniam, quam quasi praesentium error nihil iste</p>
-                  <button class="description__btn">Hire Me</button>
-              </div>
-              <div class="description">
-                  <h2 class="section__title dark:text-lime-50">Improve User Interface<br><span>with Us</span></h2>
-                  <p class="text-gray-600 dark:text-blue-100">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis eligendi soluta ut recusandae
-                      provident tempore hic odio iusto reprehenderit non, temporibus molestiae alias voluptate, facilis
-                      explicabo velit pariatur? Repellendus obcaecati dignissimos, maxime fuga consectetur id neque
-                      explicabo provident commodi, similique quidem in sunt quo quibusdam? Totam ipsa rerum,
-                      necessitatibus ipsum commodi, cum voluptates, veritatis incidunt odit explicabo sapiente. Quibusdam
-                      provident fugiat nulla, optio natus veniam, quam quasi praesentium!</p>
-                  <button class="description__btn">See my work</button>
-              </div>
-              <div class="description">
-                  <h2 class="section__title dark:text-lime-50">I'm Professional <br><span>Designer</span></h2>
-                  <p class="text-gray-600 dark:text-blue-100">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis eligendi soluta ut recusandae
-                      provident tempore hic odio iusto reprehenderit non, temporibus molestiae alias voluptate, facilis
-                      explicabo velit pariatur? Repellendus obcaecati dignissimos, maxime fuga consectetur id neque
-                      explicabo provident commodi, similique quidem in sunt quo quibusdam? Totam ipsa rerum,
-                      necessitatibus ipsum commodi, cum voluptates, veritatis incidunt odit explicabo sapiente. Quibusdam
-                      provident fugiat nulla, optio natus veniam, quam quasi praesentium!</p>
-                  <button class="description__btn">Contact Me</button>
-              </div>
-          </div>
-      </section>
-    </div>
-  </div>
+
+        <div id="skills" class="pt-24 pb-20 dark:bg-[#121314]">
+
+          <section class="skill-all max-w-7xl mx-auto px-8 skills-layout-fix items-center">
+            <div class="skills skills-left flex flex-col gap-4">
+                <div class="skill bg-gray-100 dark:bg-gray-800 shadow-sm rounded-xl p-4 cursor-pointer border border-gray-200 dark:border-[#303436] hover:border-blue-400 dark:hover:border-blue-500 flex items-center gap-4">
+                  <div class="icon-bg flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-blue-50 dark:bg-gray-700 text-blue-500 transition-colors">
+                    <i class="fa-solid fa-code"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-md text-gray-900 dark:text-gray-100">Programming & Full-Stack</h3>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Python, Java, JavaScript (ES6+), ReactJS, Next.js, HTML5, CSS3, C++</p>
+                  </div>
+                </div>
+                <div class="skill bg-gray-100 dark:bg-gray-800 shadow-sm rounded-xl p-4 cursor-pointer border border-gray-200 dark:border-[#303436] hover:border-green-400 dark:hover:border-green-500 flex items-center gap-4">
+                  <div class="icon-bg flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-green-50 dark:bg-gray-700 text-green-500 transition-colors">
+                    <i class="fa-solid fa-database"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-md text-gray-900 dark:text-gray-100">Data Management & Analysis</h3>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">SQL (MySQL, SQLite), MongoDB, Python (Pandas), Tableau, Jupyter</p>
+                  </div>
+                </div>
+                <div class="skill bg-gray-100 dark:bg-gray-800 shadow-sm rounded-xl p-4 cursor-pointer border border-gray-200 dark:border-[#303436] hover:border-purple-400 dark:hover:border-purple-500 flex items-center gap-4">
+                  <div class="icon-bg flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-purple-50 dark:bg-gray-700 text-purple-500 transition-colors">
+                    <i class="fa-solid fa-cloud"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-md text-gray-900 dark:text-gray-100">Cloud & Networking</h3>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">AWS (EC2, S3, VPC, IAM), Linux (Ubuntu, Kali), Cisco Packet Tracer</p>
+                  </div>
+                </div>
+                <div class="skill bg-gray-100 dark:bg-gray-800 shadow-sm rounded-xl p-4 cursor-pointer border border-gray-200 dark:border-[#303436] hover:border-red-400 dark:hover:border-red-500 flex items-center gap-4">
+                  <div class="icon-bg flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-red-50 dark:bg-gray-700 text-red-500 transition-colors">
+                    <i class="fa-solid fa-shield-halved"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-md text-gray-900 dark:text-gray-100">Enterprise IT & Security</h3>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">SAP S/4HANA, Postman, Wireshark, Nmap, Git/GitHub, CI/CD</p>
+                  </div>
+                </div>
+                <div class="skill bg-gray-100 dark:bg-gray-800 shadow-sm rounded-xl p-4 cursor-pointer border border-gray-200 dark:border-[#303436] hover:border-yellow-400 dark:hover:border-yellow-500 flex items-center gap-4">
+                  <div class="icon-bg flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-yellow-50 dark:bg-gray-700 text-yellow-500 transition-colors">
+                    <i class="fa-brands fa-ethereum"></i>
+                  </div>
+                  <div>
+                    <h3 class="font-bold text-md text-gray-900 dark:text-gray-100">Blockchain Forensics</h3>
+                    <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Web3.py, Ethers.js, Etherscan API, SQLite Caching Layers</p>
+                  </div>
+                </div>
+            </div>
+
+            <div class="skills__description skills-right bg-gray-100 dark:bg-[#1e2022] p-8 lg:p-12 rounded-2xl shadow-xl border border-gray-200 dark:border-[#303436]">
+                <div class="description active__description">
+                    <div class="mb-6 inline-block p-4 rounded-2xl bg-blue-50 dark:bg-blue-900/20 text-blue-500 dark:text-blue-400">
+                      <i class="fa-solid fa-laptop-code fa-2xl"></i>
+                    </div>
+                    <h2 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">Programming & <br><span class="text-blue-500">Software Development</span></h2>
+                    <p class="text-gray-700 dark:text-gray-300 mt-6 text-lg leading-relaxed">Proficient in Object-Oriented Programming (OOP) and Data-Driven Web Application Development. Utilizing modern full-stack frameworks (ReactJS, Next.js, Express.js) combined with robust version control with Git (incorporating  GitLab or GitHub) and CI/CD pipelines to build scalable, responsive digital solutions. Focused on algorithmic problem-solving and clean system architecture.</p>
+                </div>
+                <div class="description">
+                    <div class="mb-6 inline-block p-4 rounded-2xl bg-green-50 dark:bg-green-900/20 text-green-500 dark:text-green-400">
+                      <i class="fa-solid fa-chart-pie fa-2xl"></i>
+                    </div>
+                    <h2 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">Data Management & <br><span class="text-green-500">Business Intelligence</span></h2>
+                    <p class="text-gray-700 dark:text-gray-300 mt-6 text-lg leading-relaxed">Experienced in full-cycle data pipeline management, from web scraping acquisition to advanced wrangling. Adept at cleaning, normalizing, and structuring complex relational (SQL) and non-relational (MongoDB) datasets using Python and Pandas. Highly skilled in translating raw Big Data concepts into actionable business intelligence through comprehensive Tableau dashboards.</p>
+                </div>
+                <div class="description">
+                    <div class="mb-6 inline-block p-4 rounded-2xl bg-purple-50 dark:bg-purple-900/20 text-purple-500 dark:text-purple-400">
+                      <i class="fa-solid fa-network-wired fa-2xl"></i>
+                    </div>
+                    <h2 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">Cloud Computing & <br><span class="text-purple-500">Network Infrastructure</span></h2>
+                    <p class="text-gray-700 dark:text-gray-300 mt-6 text-lg leading-relaxed">Strong foundation in cloud architecture principles, focusing on core AWS services (EC2, S3, VPC, IAM) and serverless concepts. Practical expertise in network fundamentals including TCP/IP, LAN/WAN configurations, and routing/switching. Comfortable managing and securing multiple operating systems, particularly Linux distributions (Ubuntu, Kali).</p>
+                </div>
+                <div class="description">
+                    <div class="mb-6 inline-block p-4 rounded-2xl bg-red-50 dark:bg-red-900/20 text-red-500 dark:text-red-400">
+                      <i class="fa-solid fa-sitemap fa-2xl"></i>
+                    </div>
+                    <h2 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">Enterprise IT & <br><span class="text-red-500">Risk Security</span></h2>
+                    <p class="text-gray-700 dark:text-gray-300 mt-6 text-lg leading-relaxed">Skilled in strategic capability planning, requirements modeling (UML), and ERP integration (SAP S/4HANA). Trained in critical IT governance frameworks, threat modeling, and network analysis utilizing Wireshark and Nmap. Focused on aligning technical infrastructure and RESTful API integrations securely with overarching business goals.</p>
+                </div>
+                <div class="description">
+                    <div class="mb-6 inline-block p-4 rounded-2xl bg-yellow-50 dark:bg-yellow-900/20 text-yellow-500 dark:text-yellow-400">
+                      <i class="fa-solid fa-link fa-2xl"></i>
+                    </div>
+                    <h2 class="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">Data Forensics & <br><span class="text-yellow-500">Blockchain Analytics</span></h2>
+                    <p class="text-gray-700 dark:text-gray-300 mt-6 text-lg leading-relaxed">Specializing in the deep analysis of Ethereum-compatible public blockchains. Building command-line interface (CLI) tools for post-hoc forensic detection to identify and measure Maximal Extracted Value (MEV) activities, such as Arbitrage and Sandwich Attacks, heavily utilizing Web3 libraries and local SQLite caching layers.</p>
+                </div>
+            </div>
+          </section>
+        </div>
 
         <div id="includedContent"></div>
-        
-        <!-- work section -->
 
-        <section id="work" class="py-20 bg-gray-200 shadow-md dark:bg-blue-grey px-8">
+        <section id="work" class="py-20 bg-gray-100 dark:bg-black px-8 border-t border-gray-200 dark:border-[#242729]">
           <div class="max-w-6xl mx-auto">
-            <div class="inverted text-center">
-              <h1 class="text-6xl font-bold text-gray-700 dark:text-green-700-accent">Work</h1>
-              <p class="pt-2 text-xl dark:text-green-200-accent">Here is my portfolio.</p>
+            <div class="text-center">
+              <h1 class="text-6xl font-bold text-gray-800 dark:text-gray-100">My Work</h1>
+              <p class="pt-2 text-xl text-gray-600 dark:text-gray-400">Here is my portfolio.</p>
             </div>
-            <div
-              class="
-                grid
-                mt-16
-                grid-cols-1
-                md:grid-cols-2
-                lg:grid-cols-3
-                gap-14
-              "
-            >
-              <div class="bg-white dark:bg-teal-700-accent rounded-md shadow-md lg:col-span-2">
-                <img
-                  class="inverted object-cover w-full h-80 rounded-t-md"
-                  src="https://slickdeals.net/blog/wp-content/uploads/2020/03/20-hero-dell-remote-work-3.jpg"
-                  alt=""
-                />
-                <div class="p-8">
-                  <h3 class="text-2xl font-bold text-cyan dark:text-deep-purple-50">Work Title</h3>
-                  <p class="pt-3">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Corporis obcaecati officia earum eum quaerat repellendus
-                    labore voluptates possimus, eaque magnam?
-                  </p>
-                  <a
-                    href=""
-                    class="
-                      inline-block
-                      mt-4
-                      px-6
-                      py-2
-                      bg-gradient-to-r
-                      from-primary
-                      to-secondary
-                      rounded-md
-                      shadow-md
-                      text-white
-                      font-bold
-                      text-sm
-                    "
-                    >View More</a
-                  >
+
+            <div id="portfolio-wrapper" class="mt-16">
+              
+              <div class="portfolio-page grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 transition-opacity duration-300" data-page="1">
+                
+                <div class="bg-white dark:bg-[#1e2022] rounded-xl shadow-lg overflow-hidden flex flex-col lg:col-span-2 border border-gray-100 dark:border-[#303436]">
+                  <img src="https://images.unsplash.com/photo-1621504450181-5d356f61d307?auto=format&fit=crop&w=800&q=80" alt="Blockchain" class="object-cover w-full h-64 hover:grayscale transition duration-500">
+                  <div class="p-8 flex-grow flex flex-col">
+                    <h3 class="font-bold text-2xl text-gray-900 dark:text-gray-100 mb-3">Blockchain Data Forensics (CLI)</h3>
+                    <p class="text-gray-600 dark:text-gray-400 flex-grow">Engineered a command-line data analysis tool to identify, measure, and visualize Maximal Extracted Value (MEV) activities (Arbitrage/Sandwich Attacks) on public blockchains using a local SQLite caching layer.</p>
+                    <div class="mt-6">
+                      <a href="https://github.com/hungerfordtrevor-uni/blockchain-dark-forest-mev/tree/feature/sqlite-ingestion" target="_blank" class="inline-block px-6 py-2 bg-gradient-to-r from-primary to-secondary rounded-md shadow-md text-white font-bold text-sm hover:opacity-90 transition">View GitHub</a>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="bg-white dark:bg-teal-700-accent rounded-md shadow-md">
-                <img
-                  class="inverted object-cover w-full h-80 rounded-t-md"
-                  src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Paperless_work_desk_with_an_iPad%2C_iMac_and_a_MacBook.jpg"
-                  alt=""
-                />
-                <div class="p-8">
-                  <h3 class="text-2xl font-bold text-cyan dark:text-deep-purple-50">Work Title</h3>
-                  <p class="pt-3">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Corporis obcaecati officia earum eum quaerat repellendus
-                    labore voluptates possimus, eaque magnam?
-                  </p>
-                  <a
-                    href=""
-                    class="
-                      inline-block
-                      mt-4
-                      px-6
-                      py-2
-                      bg-gradient-to-r
-                      from-primary
-                      to-secondary
-                      rounded-md
-                      shadow-md
-                      text-white
-                      font-bold
-                      text-sm
-                    "
-                    >View More</a
-                  >
+
+                <div class="bg-white dark:bg-[#1e2022] rounded-xl shadow-lg overflow-hidden flex flex-col lg:col-span-1 border border-gray-100 dark:border-[#303436]">
+                  <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600&auto=format&fit=crop" alt="Data Analytics" class="object-cover w-full h-48 hover:grayscale transition duration-500">
+                  <div class="p-6 flex-grow flex flex-col">
+                    <h3 class="font-bold text-xl text-gray-900 dark:text-gray-100 mb-2">Enterprise Data Pipeline</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 flex-grow">Developing a full-stack Python/AWS data pipeline to automate data ingestion, cleaning, and visualization.</p>
+                    <div class="mt-4">
+                      <a href="#" class="inline-block px-5 py-2 bg-gradient-to-r from-primary to-secondary rounded-md shadow-md text-white font-bold text-xs hover:opacity-90 transition">In Progress</a>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="bg-white dark:bg-teal-700-accent rounded-md shadow-md">
-                <img
-                  class="inverted object-cover w-full h-80 rounded-t-md"
-                  src="https://api.time.com/wp-content/uploads/2021/02/laptop-home-office.jpg"
-                  alt=""
-                />
-                <div class="p-8">
-                  <h3 class="text-2xl font-bold text-cyan dark:text-deep-purple-50">Work Title</h3>
-                  <p class="pt-3">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Corporis obcaecati officia earum eum quaerat repellendus
-                    labore voluptates possimus, eaque magnam?
-                  </p>
-                  <a
-                    href=""
-                    class="
-                      inline-block
-                      mt-4
-                      px-6
-                      py-2
-                      bg-gradient-to-r
-                      from-primary
-                      to-secondary
-                      rounded-md
-                      shadow-md
-                      text-white
-                      font-bold
-                      text-sm
-                    "
-                    >View More</a
-                  >
+
+                <div class="bg-white dark:bg-[#1e2022] rounded-xl shadow-lg overflow-hidden flex flex-col lg:col-span-1 border border-gray-100 dark:border-[#303436]">
+                  <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=600&auto=format&fit=crop" alt="Cloud Network" class="object-cover w-full h-48 hover:grayscale transition duration-500">
+                  <div class="p-6 flex-grow flex flex-col">
+                    <h3 class="font-bold text-xl text-gray-900 dark:text-gray-100 mb-2">AWS Cloud Deployment</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 flex-grow">Designing secure cloud architecture utilizing AWS EC2, S3, and strict IAM roles for enterprise apps.</p>
+                    <div class="mt-4">
+                      <a href="#" class="inline-block px-5 py-2 bg-gradient-to-r from-primary to-secondary rounded-md shadow-md text-white font-bold text-xs hover:opacity-90 transition">In Progress</a>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="bg-white dark:bg-teal-700-accent rounded-md shadow-md lg:col-span-2">
-                <img
-                  class="inverted object-cover w-full h-80 rounded-t-md"
-                  src="https://hbr.org/resources/images/article_assets/2014/10/Mar20_05_1187745190.jpg"
-                  alt=""
-                />
-                <div class="p-8">
-                  <h3 class="text-2xl font-bold text-cyan dark:text-deep-purple-50">Work Title</h3>
-                  <p class="pt-3">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Corporis obcaecati officia earum eum quaerat repellendus
-                    labore voluptates possimus, eaque magnam?
-                  </p>
-                  <a
-                    href=""
-                    class="
-                      inline-block
-                      mt-4
-                      px-6
-                      py-2
-                      bg-gradient-to-r
-                      from-primary
-                      to-secondary
-                      rounded-md
-                      shadow-md
-                      text-white
-                      font-bold
-                      text-sm
-                    "
-                    >View More</a
-                  >
+
+                <div class="bg-white dark:bg-[#1e2022] rounded-xl shadow-lg overflow-hidden flex flex-col lg:col-span-2 border border-gray-100 dark:border-[#303436]">
+                  <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=800&auto=format&fit=crop" alt="Strategy" class="object-cover w-full h-64 hover:grayscale transition duration-500">
+                  <div class="p-8 flex-grow flex flex-col">
+                    <h3 class="font-bold text-2xl text-gray-900 dark:text-gray-100 mb-3">Strategic Project Support</h3>
+                    <p class="text-gray-600 dark:text-gray-400 flex-grow">Partnered with a former Global Director of DBS Bank to map stakeholder requirements and develop budget forecasting models tailored for public sector initiatives and core banking systems.</p>
+                    <div class="mt-6">
+                      <a href="#mentorship-box" class="inline-block px-6 py-2 bg-gradient-to-r from-primary to-secondary rounded-md shadow-md text-white font-bold text-sm hover:opacity-90 transition">View Details</a>
+                    </div>
+                  </div>
                 </div>
+
               </div>
+
+              <div class="portfolio-page grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 transition-opacity duration-300 hidden opacity-0" data-page="2">
+                
+                <div class="bg-white dark:bg-[#1e2022] rounded-xl shadow-lg overflow-hidden flex flex-col lg:col-span-2 border border-gray-100 dark:border-[#303436]">
+                  <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=800&auto=format&fit=crop" alt="Cyber Security" class="object-cover w-full h-64 hover:grayscale transition duration-500">
+                  <div class="p-8 flex-grow flex flex-col">
+                    <h3 class="font-bold text-2xl text-gray-900 dark:text-gray-100 mb-3">Threat Detection API</h3>
+                    <p class="text-gray-600 dark:text-gray-400 flex-grow">Developing a custom API endpoint integration that scans incoming payload data against known threat signatures, deploying real-time mitigation protocols using Node.js.</p>
+                    <div class="mt-6">
+                      <a href="#" class="inline-block px-6 py-2 bg-gradient-to-r from-primary to-secondary rounded-md shadow-md text-white font-bold text-sm hover:opacity-90 transition">In Progress</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-white dark:bg-[#1e2022] rounded-xl shadow-lg overflow-hidden flex flex-col lg:col-span-1 border border-gray-100 dark:border-[#303436]">
+                  <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=600&auto=format&fit=crop" alt="React Dev" class="object-cover w-full h-48 hover:grayscale transition duration-500">
+                  <div class="p-6 flex-grow flex flex-col">
+                    <h3 class="font-bold text-xl text-gray-900 dark:text-gray-100 mb-2">React Dashboard</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 flex-grow">A full-stack React frontend visualizing live SQLite database metrics.</p>
+                    <div class="mt-4">
+                      <a href="#" class="inline-block px-5 py-2 bg-gradient-to-r from-primary to-secondary rounded-md shadow-md text-white font-bold text-xs hover:opacity-90 transition">In Progress</a>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="flex justify-center items-center mt-12 space-x-2">
+                <button id="prev-page" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-300 dark:bg-[#242729] text-gray-500 dark:text-gray-400 cursor-not-allowed transition hover:bg-gray-400 dark:hover:bg-[#303436]">
+                  <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                
+                <div id="page-numbers" class="flex space-x-2">
+                  <button class="page-btn active-page w-10 h-10 rounded-full flex items-center justify-center font-bold bg-gradient-to-r from-primary to-secondary text-white shadow-md" data-target="1">1</button>
+                  <button class="page-btn w-10 h-10 rounded-full flex items-center justify-center font-bold bg-gray-300 dark:bg-[#242729] text-gray-700 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-[#303436] transition" data-target="2">2</button>
+                </div>
+
+                <button id="next-page" class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-300 dark:bg-[#242729] text-gray-700 dark:text-gray-300 transition hover:bg-gray-400 dark:hover:bg-[#303436]">
+                  <i class="fa-solid fa-chevron-right"></i>
+                </button>
+              </div>
+
             </div>
           </div>
         </section>
-        <section id="contact" class="dark:bg-black pt-20 pb-36 px-8 bg-gray-50">
+
+        <section id="academic" class="py-20 bg-gray-50 dark:bg-[#181a1b] px-8 border-t border-gray-200 dark:border-[#242729]">
+          
+          <style>
+            @media (min-width: 1024px) {
+              .academic-layout-fix { display: flex; flex-direction: row; gap: 3rem; align-items: stretch; }
+              .academic-left { width: 45%; display: flex; flex-direction: column; }
+              .academic-right { width: 55%; display: flex; flex-direction: column; }
+            }
+            @media (max-width: 1023px) {
+              .academic-layout-fix { display: flex; flex-direction: column; gap: 3rem; }
+              .academic-left, .academic-right { width: 100%; }
+            }
+          </style>
+
+          <div class="max-w-6xl mx-auto">
+             <div class="text-center">
+              <h1 class="text-6xl font-bold text-gray-800 dark:text-gray-100">Academic Progress</h1>
+              <p class="pt-2 text-xl text-gray-600 dark:text-gray-400">Grades, Certifications & Mentorship.</p>
+            </div>
+            
+            <div class="academic-layout-fix mt-20">
+               
+               <div class="academic-left bg-white dark:bg-[#1e2022] p-10 rounded-2xl shadow-lg border-l-4 border-blue-500 relative overflow-hidden flex flex-col">
+                  <i class="fa-solid fa-graduation-cap absolute -right-6 -top-6 text-9xl text-gray-100 dark:text-gray-800 opacity-50 z-0"></i>
+                  <div class="relative z-10 flex-grow">
+                    <h3 class="text-3xl font-bold text-gray-900 dark:text-white leading-tight">Bachelor of <br>Information Technology</h3>
+                    <p class="text-blue-500 dark:text-blue-400 font-bold text-lg mt-3">Adelaide University</p>
+                    <div class="inline-block mt-2 px-3 py-1 bg-blue-50 dark:bg-blue-900/30 rounded text-sm text-gray-600 dark:text-gray-300 font-medium">
+                      Expected Graduation: Sep 2026 | Current GPA: <span class="text-gray-900 dark:text-white font-bold">5.528</span>
+                    </div>
+                    
+                    <div class="mt-8 space-y-5">
+                      
+                      <div class="bg-gray-50 dark:bg-[#242729] p-5 rounded-xl border border-gray-100 dark:border-[#303436]">
+                        <strong class="text-gray-900 dark:text-gray-100 flex items-center gap-2 mb-2 text-lg">
+                          <i class="fa-solid fa-laptop-code text-blue-500"></i> Advanced Technical Subjects
+                        </strong>
+                        <p class="text-xs text-gray-500 mb-3 uppercase tracking-wider font-semibold">Key University Courses:</p>
+                        <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-400">
+                          <li class="leading-relaxed">
+                            <span class="text-blue-500 dark:text-blue-400 mr-1">■</span> 
+                            Leveraging <strong>Big Data Concepts</strong> and <strong>Big Data in the Cloud</strong> to engineer scalable pipelines, while extracting actionable insights through <strong>Business Intelligence</strong>.
+                          </li>
+                          <li class="leading-relaxed">
+                            <span class="text-blue-500 dark:text-blue-400 mr-1">■</span> 
+                            Building robust applications through <strong>Object Oriented Programming</strong>, <strong>Problem Solving and Programming</strong>, and <strong>Data Driven Web Technologies</strong>.
+                          </li>
+                          <li class="leading-relaxed">
+                            <span class="text-blue-500 dark:text-blue-400 mr-1">■</span> 
+                            Architecting cloud-ready environments using <strong>Cloud Platforms</strong> and <strong>Enterprise Systems</strong>, supported by rigorous design methodologies from <strong>System Design Practice</strong> and <strong>System Design and Realization</strong>.
+                          </li>
+                          <li class="leading-relaxed">
+                            <span class="text-blue-500 dark:text-blue-400 mr-1">■</span> 
+                            Leading end-to-end software lifecycles in <strong>Capstone Project 1 & 2</strong>, ensuring threat-mitigated, user-focused solutions via <strong>Security Foundations</strong>, <strong>System Requirements Practice</strong>, and <strong>System Requirements and User Experience</strong>.
+                          </li>
+                        </ul>
+                      </div>
+                      
+                      <div class="bg-gray-50 dark:bg-[#242729] p-5 rounded-xl border border-gray-100 dark:border-[#303436]">
+                        <strong class="text-gray-900 dark:text-gray-100 flex items-center gap-2 mb-2 text-lg">
+                          <i class="fa-solid fa-layer-group text-gray-400"></i> Core IT Foundational Subjects
+                        </strong>
+                        <p class="text-xs text-gray-500 mb-3 uppercase tracking-wider font-semibold">Essential University Courses:</p>
+                        <ul class="space-y-3 text-sm text-gray-600 dark:text-gray-400">
+                          <li class="leading-relaxed">
+                            <span class="text-gray-400 dark:text-gray-500 mr-1">■</span> 
+                            Mastering the extraction, cleaning, and governance of datasets in <strong>Data Acquisition and Wrangling</strong>, underpinned by core infrastructure knowledge from <strong>Network Fundamentals</strong> and <strong>Information Technology Fundamentals</strong>.
+                          </li>
+                          <li class="leading-relaxed">
+                            <span class="text-gray-400 dark:text-gray-500 mr-1">■</span> 
+                            Aligning IT deployments with enterprise objectives through <strong>Strategic Management</strong> and <strong>Project Management: Principles and Strategies</strong>, while implementing iterative delivery frameworks via <strong>Agile Development and Governance</strong> and <strong>Risk Management and Governance</strong>.
+                          </li>
+                        </ul>
+                      </div>
+
+                    </div>
+                  </div>
+               </div>
+
+               <div id="mentorship-box" class="academic-right bg-white dark:bg-[#1e2022] p-10 rounded-2xl shadow-lg border-l-4 border-teal-500 flex-grow">
+                  <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">Certifications & Experience</h3>
+                  
+                  <div class="space-y-5 flex flex-col h-full">
+                    
+                    <div class="bg-gray-50 dark:bg-[#242729] p-5 rounded-xl border border-gray-100 dark:border-[#303436]">
+                      <strong class="text-gray-900 dark:text-gray-100 flex items-center gap-2 mb-3 text-lg">
+                        <i class="fa-solid fa-user-tie text-purple-500"></i> Experience: Industry Mentorship
+                      </strong>
+                      <div class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed space-y-2">
+                        <p>Mentored directly by a former Global Director of DBS Bank, gaining hands-on experience that mirrors an actual corporate enterprise environment.</p>
+                        <ul class="list-disc list-outside ml-4 space-y-1.5 mt-2">
+                          <li><strong>Enterprise Workflows:</strong> Operated within real-world project management constraints, learning to navigate complex stakeholder dynamics.</li>
+                          <li><strong>Strategic Architecture:</strong> Analyzed enterprise architectures to ensure technical solutions aligned directly with overarching business goals.</li>
+                          <li><strong>Financial Modeling:</strong> Developed rigorous budget forecasting models tailored for large-scale public sector initiatives and core banking systems.</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-[#242729] p-5 rounded-xl border border-gray-100 dark:border-[#303436]">
+                      <strong class="text-gray-900 dark:text-gray-100 flex items-center gap-2 mb-4 text-lg">
+                        <i class="fa-solid fa-certificate text-teal-500 text-xl"></i> Professional Certifications
+                      </strong>
+                      
+                      <div class="mb-4">
+                        <span class="text-xs font-bold uppercase tracking-wider text-green-500 mb-2 flex items-center gap-1"><i class="fa-solid fa-circle-check"></i> Completed</span>
+                        <ul class="list-disc list-outside ml-4 text-sm text-gray-700 dark:text-gray-300 space-y-1.5 font-medium">
+                          <li>IBM Data Engineering Professional Certificate</li>
+                          <li>Full-Stack Web Development Bootcamp Diploma</li>
+                          <li>Data Engineering on AWS - Foundations (IBM)</li>
+                          <li>IBM Introduction to Data Engineering</li>
+                        </ul>
+                      </div>
+                      
+                      <div class="mb-4">
+                        <span class="text-xs font-bold uppercase tracking-wider text-yellow-500 mb-2 flex items-center gap-1"><i class="fa-solid fa-spinner fa-spin"></i> In Progress <span class="text-gray-400 dark:text-gray-500 lowercase normal-case text-xs ml-1">(Target < 1 Yr)</span></span>
+                        <ul class="list-disc list-outside ml-4 text-sm text-gray-600 dark:text-gray-400 space-y-1.5">
+                          <li>IBM Python for Data Science, AI & Development</li>
+                          <li>IBM Introduction to Big Data with Spark and Hadoop</li>
+                          <li>IBM DevOps, Cloud, and Agile Foundations</li>
+                        </ul>
+                      </div>
+
+                      <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-blue-400 dark:text-blue-500 mb-2 flex items-center gap-1"><i class="fa-solid fa-location-crosshairs"></i> Future Objectives</span>
+                        <ul class="list-disc list-outside ml-4 text-sm text-gray-500 dark:text-gray-500 space-y-1.5">
+                          <li>Google Cloud Data Engineering, Big Data & ML on GCP</li>
+                          <li>Data Engineering Foundations Specialization</li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-[#242729] p-5 rounded-xl border border-gray-100 dark:border-[#303436] flex-grow">
+                      <strong class="text-gray-900 dark:text-gray-100 flex items-center gap-2 mb-3 text-lg">
+                        <i class="fa-solid fa-briefcase text-blue-500"></i> Additional Experience
+                      </strong>
+                      <div class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed space-y-4">
+                        
+                        <div>
+                          <strong class="text-gray-800 dark:text-gray-200">Declaration Voting Officer</strong> <span class="text-xs text-gray-500 ml-1">| Electoral Commission SA</span>
+                          <p class="mt-1">Managed sensitive voter information and ensured strict regulatory compliance and data integrity during the state ballot process.</p>
+                        </div>
+
+                        <div>
+                          <strong class="text-gray-800 dark:text-gray-200">Retail Assistant Manager</strong> <span class="text-xs text-gray-500 ml-1">| Ceylon Supermarket</span>
+                          <p class="mt-1">Demonstrated leadership, accountability, and operational management in a fast-paced, customer-facing environment.</p>
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+               </div>
+
+            </div>
+          </div>
+        </section>
+
+        <section id="services" class="bg-gray-100 dark:bg-[#121314] pt-20 pb-28 px-8 border-t border-gray-200 dark:border-[#242729]">
+          
+          <style>
+            @media (min-width: 768px) {
+              .services-layout-fix { display: flex; flex-direction: row; gap: 3.5rem; align-items: stretch; }
+              .services-layout-fix > div { flex: 1; display: flex; flex-direction: column; }
+            }
+            @media (max-width: 767px) {
+              .services-layout-fix { display: flex; flex-direction: column; gap: 3.5rem; }
+            }
+          </style>
+
+          <div class="max-w-6xl mx-auto">
+            
+            <div class="text-center">
+              <h1 class="text-6xl font-bold text-gray-800 dark:text-gray-100">Why Hire Me</h1>
+              <p class="pt-2 text-xl text-gray-600 dark:text-gray-400">Core competencies driving technical and business value.</p>
+            </div>
+            
+            <div class="services-layout-fix mt-24">
+              
+              <div class="relative group">
+                <div class="absolute z-10 inset-0 bg-gradient-to-r from-primary to-secondary shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-lg opacity-80"></div>
+                <div class="relative z-20 bg-white dark:bg-[#1e2022] h-full rounded-md shadow-md flex flex-col overflow-hidden border border-transparent dark:border-[#303436]">
+                  <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=800&auto=format&fit=crop" class="servicesImageHeight w-full object-cover hover:grayscale transition duration-500" alt="Data Analytics Dashboard" />
+                  <div class="p-8 flex-grow flex flex-col">
+                    <h2 class="font-bold text-2xl text-gray-900 dark:text-gray-100">Data-Driven Problem Solving</h2>
+                    <p class="pt-3 text-gray-600 dark:text-gray-400">Translating complex datasets into actionable business intelligence using modern analytics stacks.</p>
+                    
+                    <div class="hidden-content hidden mt-4 pt-4 border-t border-gray-200 dark:border-[#303436]">
+                      <p class="text-sm text-gray-500 dark:text-gray-400">Demonstrating extreme resilience and a capacity for rapid upskilling, I self-taught and mastered Python, Pandas, and Tableau to engineer robust data pipelines. My focus is on leveraging big data and rigorous requirements analysis to drive transparent, impactful decisions.</p>
+                    </div>
+                    <button class="mt-auto pt-6 text-blue-500 font-bold text-sm self-start expand-btn transition hover:opacity-70">Read More <i class="fa-solid fa-chevron-down ml-1 text-xs"></i></button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="relative group">
+                <div class="absolute z-10 inset-0 bg-gradient-to-r from-primary to-secondary shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-lg opacity-80"></div>
+                <div class="relative z-20 bg-white dark:bg-[#1e2022] h-full rounded-md shadow-md flex flex-col overflow-hidden border border-transparent dark:border-[#303436]">
+                  <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop" class="servicesImageHeight w-full object-cover hover:grayscale transition duration-500" alt="Cloud Infrastructure" />
+                  <div class="p-8 flex-grow flex flex-col">
+                    <h2 class="font-bold text-2xl text-gray-900 dark:text-gray-100">Enterprise Architecture & Strategy</h2>
+                    <p class="pt-3 text-gray-600 dark:text-gray-400">Designing scalable, secure cloud infrastructure that aligns technical capabilities with overarching goals.</p>
+                    
+                    <div class="hidden-content hidden mt-4 pt-4 border-t border-gray-200 dark:border-[#303436]">
+                      <p class="text-sm text-gray-500 dark:text-gray-400">Backed by hands-on industry mentorship focused on Project Management and Banking Systems, I specialize in mapping stakeholder requirements and deploying secure AWS environments. I ensure systems are both resilient and highly accountable to the organizations they serve.</p>
+                    </div>
+                    <button class="mt-auto pt-6 text-blue-500 font-bold text-sm self-start expand-btn transition hover:opacity-70">Read More <i class="fa-solid fa-chevron-down ml-1 text-xs"></i></button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="relative group">
+                <div class="absolute z-10 inset-0 bg-gradient-to-r from-primary to-secondary shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-lg opacity-80"></div>
+                <div class="relative z-20 bg-white dark:bg-[#1e2022] h-full rounded-md shadow-md flex flex-col overflow-hidden border border-transparent dark:border-[#303436]">
+                  <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=800&auto=format&fit=crop" class="servicesImageHeight w-full object-cover hover:grayscale transition duration-500" alt="Coding and Innovation" />
+                  <div class="p-8 flex-grow flex flex-col">
+                    <h2 class="font-bold text-2xl text-gray-900 dark:text-gray-100">Adaptability & Innovation</h2>
+                    <p class="pt-3 text-gray-600 dark:text-gray-400">A proven track record of tackling unfamiliar technologies and delivering complex technical solutions.</p>
+                    
+                    <div class="hidden-content hidden mt-4 pt-4 border-t border-gray-200 dark:border-[#303436]">
+                      <p class="text-sm text-gray-500 dark:text-gray-400">Whether I am building a CLI tool to analyze Maximal Extractable Value (MEV) on Ethereum, or teaching myself entirely new full-stack environments, I adapt quickly. I bring a committed, accountable, and service-oriented mindset to every technical challenge.</p>
+                    </div>
+                    <button class="mt-auto pt-6 text-blue-500 font-bold text-sm self-start expand-btn transition hover:opacity-70">Read More <i class="fa-solid fa-chevron-down ml-1 text-xs"></i></button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" class="pt-20 pb-36 px-8 bg-gray-50 dark:bg-[#181a1b] border-t border-gray-200 dark:border-[#242729]">
           <div class="max-w-6xl mx-auto">
             <div class="text-center">
-              <h1 class="text-6xl dark:text-green-100 font-bold text-gray-700">Contact</h1>
-              <p class="pt-2 dark:text-green-300 text-xl">Get in touch with me.</p>
+              <h1 class="text-6xl font-bold text-gray-800 dark:text-gray-100">Contact</h1>
+              <p class="pt-2 text-gray-600 dark:text-gray-400 text-xl">Get in touch with me.</p>
             </div>
           </div>
           <div class="mt-16 relative max-w-4xl mx-auto">
-            <div
-              class="
-                absolute
-                z-10
-                inset-0
-                bg-gradient-to-r
-                from-primary
-                to-secondary
-                shadow-lg
-                transform
-                -skew-y-6
-                sm:shew-y-0 sm:-rotate-6 sm:rounded-lg
-              "
-            ></div>
-            <div class="relative z-20 bg-white dark:bg-gray-300 dark:text-green-600 rounded-md shadow-md p-12">
-              <form action="">
-                <div class="inverted grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-                  <input
-                    type="text"
-                    placeholder="Name"
-                    class="
-                      border border-gray-200
-                      outline-none
-                      px-4
-                      py-2
-                      rounded-md
-                      hover:border-gray-400
-                      focus:border-gray-600
-                    "
-                  />
-                  <input
-                    type="email"
-                    placeholder="E-mail"
-                    class="
-                      border border-gray-200
-                      outline-none
-                      px-4
-                      py-2
-                      rounded-md
-                      hover:border-gray-400
-                      focus:border-gray-600
-                    "
-                  />
-                  <input
-                    type="text"
-                    placeholder="Subject"
-                    class="
-                      border border-gray-200
-                      outline-none
-                      px-4
-                      py-2
-                      rounded-md
-                      hover:border-gray-400
-                      focus:border-gray-600
-                      md:col-span-2
-                    "
-                  />
-                  <textarea
-                    class="
-                      border border-gray-200
-                      outline-none
-                      px-4
-                      py-2
-                      rounded-md
-                      hover:border-gray-400
-                      focus:border-gray-600
-                      md:col-span-2
-                    "
-                    rows="5"
-                    placeholder="message"
-                  ></textarea>
+            <div class="absolute z-10 inset-0 bg-gradient-to-r from-primary to-secondary shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-lg opacity-80"></div>
+            <div class="relative z-20 bg-white dark:bg-[#1e2022] rounded-md shadow-lg p-12 border border-gray-100 dark:border-[#303436]">
+              <form action="https://formspree.io/f/xvzvvyvy" method="POST" class="w-full mx-auto relative z-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                  <input type="text" name="name" placeholder="Name" required class="border border-gray-200 dark:border-[#303436] outline-none px-4 py-3 rounded-md focus:border-blue-500 dark:focus:border-blue-500 bg-gray-50 dark:bg-[#181a1b] text-gray-900 dark:text-white transition" />
+                  <input type="email" name="email" placeholder="E-mail" required class="border border-gray-200 dark:border-[#303436] outline-none px-4 py-3 rounded-md focus:border-blue-500 dark:focus:border-blue-500 bg-gray-50 dark:bg-[#181a1b] text-gray-900 dark:text-white transition" />
+                  <input type="text" name="subject" placeholder="Subject" required class="border border-gray-200 dark:border-[#303436] outline-none px-4 py-3 rounded-md focus:border-blue-500 dark:focus:border-blue-500 md:col-span-2 bg-gray-50 dark:bg-[#181a1b] text-gray-900 dark:text-white transition" />
+                  <textarea name="message" rows="5" placeholder="Message" required class="border border-gray-200 dark:border-[#303436] outline-none px-4 py-3 rounded-md focus:border-blue-500 dark:focus:border-blue-500 md:col-span-2 bg-gray-50 dark:bg-[#181a1b] text-gray-900 dark:text-white resize-none transition"></textarea>
                 </div>
-                <button
-                  class="
-                  inverted
-                    inline-block
-                    w-auto
-                    mt-4
-                    px-6
-                    py-2
-                    bg-gradient-to-r
-                    from-primary
-                    to-secondary
-                    rounded-md
-                    shadow-md
-                    text-white
-                    font-bold
-                    text-sm
-                    "
-                    >
-                    Send Message
-                  </button>
-                </form>
-              </div>
+                <button type="submit" class="inline-block w-auto mt-6 px-8 py-3 bg-gradient-to-r from-primary to-secondary rounded-md shadow-md text-white font-bold text-md transition hover:opacity-90 hover:shadow-lg">
+                  Send Message <i class="fa-regular fa-paper-plane ml-2"></i>
+                </button>
+              </form>
             </div>
-          </section>
-          <!-- addon html - popup -->
-      </body>
-      <!-- jQuery used to autoscroll the page to #contacts within 10 seconds after loading-->
-      <script>
-        // TODO add this if needed
-        $("html, body").delay(3000).animate({ scrollTop: 889}, 2000);
-      </script>
-    </html>
-    <!-- just in case the browser doesn't allow html5 to loop the video -->
- <script>
- var vid = document.getElementById("vid");
-    vid.addEventListener("timeupdate", function () {
-        if(this.currentTime >= 5.0) {
-            this.currentTime = 0.0;
-        }
-    });
+          </div>
+        </section>
 
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+          // Only auto-scroll if the user hasn't touched the scrollbar yet
+          if (window.scrollY === 0) {
+            const workSection = document.getElementById('work');
+            if (workSection) {
+              const workTop = workSection.getBoundingClientRect().top + window.scrollY;
+              const targetScroll = workTop - (window.innerHeight / 2);
+              
+              // Custom smooth scroll logic for a 2-second glide
+              const startY = window.scrollY;
+              const distance = targetScroll - startY;
+              const duration = 2000; // 2 seconds (2000ms) - exact same as your old jQuery!
+              let startTime = null;
+
+              // Smooth easing function (Ease-in-out Cubic)
+              function easeInOut(t, b, c, d) {
+                t /= d / 2;
+                if (t < 1) return c / 2 * t * t * t + b;
+                t -= 2;
+                return c / 2 * (t * t * t + 2) + b;
+              }
+
+              function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                
+                // Calculate the next scroll position
+                const run = easeInOut(timeElapsed, startY, distance, duration);
+                window.scrollTo(0, run);
+                
+                // Keep animating until the duration is reached
+                if (timeElapsed < duration) {
+                  requestAnimationFrame(animation);
+                } else {
+                  window.scrollTo(0, targetScroll); // Ensure it stops exactly on target
+                }
+              }
+              
+              // Start the animation
+              requestAnimationFrame(animation);
+            }
+          }
+        }, 5000); // 5 seconds wait
+      });
+    </script>
+
+    <script>
+      var vid = document.getElementById("vid");
+      vid.addEventListener("timeupdate", function () {
+          if(this.currentTime >= 5.0) { this.currentTime = 0.0; }
+      });
     </script> 
-    <script src="more/dark.js"></script>
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const htmlElement = document.documentElement;
+        const toggleCheckbox = document.getElementById('toggle');
+        const themeWord = document.getElementById('theme-word');
+        const bgVideo = document.getElementById('vid');
+
+        toggleCheckbox.addEventListener('change', function() {
+          if(this.checked) { 
+            htmlElement.classList.remove('dark');
+            themeWord.textContent = 'dark!';
+            // Light blue is highly visible on the dark gray unscrolled background
+            themeWord.className = 'text-blue-300 font-bold text-sm transition-colors'; 
+            bgVideo.src = "./light-bg.mp4"; 
+          } else {
+            htmlElement.classList.add('dark');
+            themeWord.textContent = 'light!';
+            // Yellow is highly visible on the dark gray unscrolled background
+            themeWord.className = 'text-yellow-300 font-bold text-sm transition-colors';
+            bgVideo.src = "./tech-bg.mp4";
+          }
+        });
+      });
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const expandBtns = document.querySelectorAll('.expand-btn');
+        expandBtns.forEach(btn => {
+          btn.addEventListener('click', function() {
+            const content = this.previousElementSibling;
+            if (content.classList.contains('hidden')) {
+              content.classList.remove('hidden');
+              this.innerHTML = 'Show Less <i class="fa-solid fa-chevron-up ml-1 text-xs"></i>';
+            } else {
+              content.classList.add('hidden');
+              this.innerHTML = 'Read More <i class="fa-solid fa-chevron-down ml-1 text-xs"></i>';
+            }
+          });
+        });
+      });
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const pages = document.querySelectorAll('.portfolio-page');
+        const pageBtns = document.querySelectorAll('.page-btn');
+        const prevBtn = document.getElementById('prev-page');
+        const nextBtn = document.getElementById('next-page');
+        let currentPage = 1;
+        const totalPages = pages.length;
+
+        function updatePagination() {
+          pages.forEach(page => {
+            if (parseInt(page.getAttribute('data-page')) === currentPage) {
+              page.classList.remove('hidden');
+              page.classList.add('grid');
+              setTimeout(() => page.classList.remove('opacity-0'), 50);
+            } else {
+              page.classList.add('hidden', 'opacity-0');
+              page.classList.remove('grid');
+            }
+          });
+
+          pageBtns.forEach(btn => {
+            if (parseInt(btn.getAttribute('data-target')) === currentPage) {
+              btn.className = "page-btn active-page w-10 h-10 rounded-full flex items-center justify-center font-bold bg-gradient-to-r from-primary to-secondary text-white shadow-md";
+            } else {
+              btn.className = "page-btn w-10 h-10 rounded-full flex items-center justify-center font-bold bg-gray-300 dark:bg-[#242729] text-gray-700 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-[#303436] transition";
+            }
+          });
+
+          if (currentPage === 1) {
+            prevBtn.classList.add('text-gray-400', 'cursor-not-allowed');
+            prevBtn.classList.remove('text-gray-700', 'dark:text-gray-300');
+          } else {
+            prevBtn.classList.remove('text-gray-400', 'cursor-not-allowed');
+            prevBtn.classList.add('text-gray-700', 'dark:text-gray-300');
+          }
+
+          if (currentPage === totalPages) {
+            nextBtn.classList.add('text-gray-400', 'cursor-not-allowed');
+            nextBtn.classList.remove('text-gray-700', 'dark:text-gray-300');
+          } else {
+            nextBtn.classList.remove('text-gray-400', 'cursor-not-allowed');
+            nextBtn.classList.add('text-gray-700', 'dark:text-gray-300');
+          }
+        }
+
+        pageBtns.forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            currentPage = parseInt(e.target.closest('button').getAttribute('data-target'));
+            updatePagination();
+          });
+        });
+
+        prevBtn.addEventListener('click', () => {
+          if (currentPage > 1) { currentPage--; updatePagination(); }
+        });
+
+        nextBtn.addEventListener('click', () => {
+          if (currentPage < totalPages) { currentPage++; updatePagination(); }
+        });
+      });
+    </script>
+
     <script src="more/nav.js"></script>
     <script src="more/skills.js"></script>
-    <script src="more/skills-popup.js"></script>
   </body>
 </html>
-
